@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl4wfwlb1kwnb"]
+
+[ext_resource type="Texture2D" uid="uid://bn226vstmrwa0" path="res://assets/dungeonSprites_ v1.5/mHero_.png" id="1_sd8bw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa18v"]
+radius = 1.0
+height = 10.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 14
+motion_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="PlayerSpriteSheet" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_sd8bw")
+hframes = 8
+vframes = 6
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_aa18v")
+
+[node name="Camera2D" type="Camera2D" parent="."]
