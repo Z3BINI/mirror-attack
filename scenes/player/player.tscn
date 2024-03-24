@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl4wfwlb1kwnb"]
+[gd_scene load_steps=4 format=3 uid="uid://bl4wfwlb1kwnb"]
 
+[ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0p8j5"]
 [ext_resource type="Texture2D" uid="uid://bn226vstmrwa0" path="res://assets/dungeonSprites_ v1.5/mHero_.png" id="1_sd8bw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa18v"]
@@ -9,6 +10,11 @@ height = 10.0
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 14
 motion_mode = 1
+script = ExtResource("1_0p8j5")
+MAX_WALK_SPEED = 100.0
+MAX_RUN_SPEED = 150.0
+ACCEL_RATE = 10.0
+DASH_STRENGTH = 300.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
