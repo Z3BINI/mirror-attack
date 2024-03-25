@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var PLAYER : CharacterBody2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
