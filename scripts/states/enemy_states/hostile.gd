@@ -36,6 +36,8 @@ func shoot(player_dir):
 	projectile.direction = player_dir
 	projectile.position = self_body.global_position
 	add_child(projectile)
+	await get_tree().create_timer(0.2).timeout
+	projectile.damage_box.enable_collision()
 	
 func reset_shot(delta):
 	cooldown += delta

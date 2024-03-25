@@ -5,9 +5,11 @@ extends RigidBody2D
 
 var direction : Vector2
 var bounce_counter : int = 0
+var damage_box : Area2D
 
 func _ready():
 	apply_force(direction * MOVE_STRENGTH)
+	damage_box = $DamageBox
 	
 func _physics_process(_delta):
 	rotation = linear_velocity.angle()

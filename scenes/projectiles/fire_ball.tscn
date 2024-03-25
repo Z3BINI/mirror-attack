@@ -70,6 +70,7 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
 position = Vector2(-0.538859, 0.00984526)
 shape = SubResource("CircleShape2D_ytuju")
+disabled = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="area_entered" from="DamageBox" to="." method="_on_damage_box_area_entered"]
