@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bn138qh4o3pk1"]
+[gd_scene load_steps=12 format=3 uid="uid://bn138qh4o3pk1"]
 
 [ext_resource type="Script" path="res://scripts/projectiles/fire_ball.gd" id="1_0a6yb"]
 [ext_resource type="Texture2D" uid="uid://c0g5xa50rjn5v" path="res://assets/Fireball/FB001.png" id="1_6gm8s"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6tkxmkrqkh1s" path="res://assets/Fireball/FB003.png" id="3_b86xg"]
 [ext_resource type="Texture2D" uid="uid://8f2cjrve8cih" path="res://assets/Fireball/FB004.png" id="4_3pkuq"]
 [ext_resource type="Texture2D" uid="uid://xgg2ltvlfnrk" path="res://assets/Fireball/FB005.png" id="5_wig8u"]
+[ext_resource type="PackedScene" uid="uid://b3jlpoto5p6df" path="res://scenes/components/damage_box.tscn" id="7_oyhsd"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qt0xk"]
 bounce = 1.0
@@ -36,6 +37,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ov2e5"]
 radius = 1.68753
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ytuju"]
+radius = 1.71196
+
 [node name="FireBall" type="RigidBody2D"]
 collision_layer = 32
 collision_mask = 20
@@ -52,11 +56,20 @@ position = Vector2(-3, 0.280932)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_i7dxq")
 autoplay = "default"
-frame_progress = 0.0374256
+frame_progress = 0.687343
 
 [node name="FireBallCollision" type="CollisionShape2D" parent="."]
 position = Vector2(-0.483216, 2.38419e-07)
 shape = SubResource("CircleShape2D_ov2e5")
 debug_color = Color(0.964706, 0.0941176, 0.403922, 0.419608)
 
+[node name="DamageBox" parent="." instance=ExtResource("7_oyhsd")]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageBox"]
+position = Vector2(-0.538859, 0.00984526)
+shape = SubResource("CircleShape2D_ytuju")
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="area_entered" from="DamageBox" to="." method="_on_damage_box_area_entered"]

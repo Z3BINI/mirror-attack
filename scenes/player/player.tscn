@@ -1,15 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://bl4wfwlb1kwnb"]
+[gd_scene load_steps=7 format=3 uid="uid://bl4wfwlb1kwnb"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0p8j5"]
 [ext_resource type="Texture2D" uid="uid://bn226vstmrwa0" path="res://assets/dungeonSprites_ v1.5/mHero_.png" id="1_sd8bw"]
 [ext_resource type="PackedScene" uid="uid://cis3ajnnfia5r" path="res://scenes/player/mirror.tscn" id="3_dko47"]
+[ext_resource type="PackedScene" uid="uid://fgciukqxweru" path="res://scenes/components/hurt_box.tscn" id="4_lwfmx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa18v"]
 radius = 1.0
 height = 10.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t2tti"]
+size = Vector2(10, 16)
+
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 14
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_0p8j5")
 MAX_WALK_SPEED = 100.0
@@ -20,20 +24,27 @@ DASH_STRENGTH = 300.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="PlayerSpriteSheet" type="Sprite2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -6)
 texture = ExtResource("1_sd8bw")
 hframes = 8
 vframes = 6
 
 [node name="HandPos" type="Node2D" parent="."]
-position = Vector2(0, -6)
 
 [node name="Mirror" parent="HandPos" instance=ExtResource("3_dko47")]
 position = Vector2(8, 0)
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_aa18v")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="HurtBox" parent="." instance=ExtResource("4_lwfmx")]
+collision_layer = 64
+collision_mask = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_t2tti")

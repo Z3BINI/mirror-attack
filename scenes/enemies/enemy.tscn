@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1du512wqwxn1"]
+[gd_scene load_steps=12 format=3 uid="uid://1du512wqwxn1"]
 
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="1_fw500"]
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_u6h40"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/states/enemy_states/roam.gd" id="2_qtw1b"]
 [ext_resource type="Script" path="res://scripts/states/enemy_states/idle.gd" id="3_k0fin"]
 [ext_resource type="Script" path="res://scripts/states/enemy_states/hostile.gd" id="5_d6eo2"]
+[ext_resource type="PackedScene" uid="uid://fgciukqxweru" path="res://scenes/components/hurt_box.tscn" id="7_drcld"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nx30x"]
 
@@ -15,6 +16,9 @@ height = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2l5yv"]
 radius = 78.0577
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qor1i"]
+size = Vector2(10, 8)
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 2
@@ -63,6 +67,15 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource("CircleShape2D_2l5yv")
 debug_color = Color(1, 0.741176, 0.298039, 0.419608)
+
+[node name="HurtBox" parent="." instance=ExtResource("7_drcld")]
+collision_layer = 64
+collision_mask = 128
+MAX_HP = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_qor1i")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
