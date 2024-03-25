@@ -7,7 +7,6 @@ var direction : Vector2
 var bounce_counter : int = 0
 
 func _ready():
-	direction = Vector2.LEFT
 	apply_force(direction * MOVE_STRENGTH)
 	
 func _physics_process(_delta):
