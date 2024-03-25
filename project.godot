@@ -70,6 +70,8 @@ dash={
 2d_physics/layer_4="Items"
 2d_physics/layer_5="Mirror"
 2d_physics/layer_6="Projectiles"
+2d_physics/layer_7="hurt_box"
+2d_physics/layer_8="dmg_box"
 
 [rendering]
 
