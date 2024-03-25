@@ -19,8 +19,13 @@ func update(delta):
 
 func physics_update(_delta):
 	var player_dir : Vector2 = (self_body.PLAYER.global_position - self_body.global_position).normalized()
+	var distance_to_player : float = (self_body.PLAYER.global_position - self_body.global_position).length()
 	
 	self_body.velocity = self_body.velocity.move_toward(player_dir * CHASE_SPEED, 2)
+	if distance_to_player <= 40:
+		print(player_dir)
+		self_body.velocity = Vector2.ZERO
+	
 	
 	if has_shot == false:
 		shoot(player_dir)
