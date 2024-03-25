@@ -14,5 +14,4 @@ layer_1/tile_data = PackedInt32Array(65537, 0, 0, 131073, 0, 1, 196609, 0, 0, 39
 position = Vector2(60, 86)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_la4cg")]
-position = Vector2(-18, 59)
 PLAYER = NodePath("../Player")
