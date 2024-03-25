@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://rij7ej0q4exh"]
+[gd_scene load_steps=4 format=3 uid="uid://rij7ej0q4exh"]
 
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="1_ur2qj"]
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="2_bf2re"]
+[ext_resource type="PackedScene" uid="uid://1du512wqwxn1" path="res://scenes/enemies/enemy.tscn" id="3_la4cg"]
 
 [node name="TestLevel" type="Node2D"]
 position = Vector2(0, 1)
@@ -11,3 +12,6 @@ layer_1/tile_data = PackedInt32Array(65537, 0, 0, 131073, 0, 1, 196609, 0, 0, 39
 
 [node name="Player" parent="." instance=ExtResource("2_bf2re")]
 position = Vector2(60, 86)
+
+[node name="Enemy" parent="." instance=ExtResource("3_la4cg")]
+position = Vector2(-18, 59)
