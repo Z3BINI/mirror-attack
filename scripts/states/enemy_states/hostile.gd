@@ -25,12 +25,16 @@ func physics_update(_delta):
 	if distance_to_player <= 40:
 		self_body.velocity = Vector2.ZERO
 	
-	
-	if has_shot == false:
-		if self_body.ENEMY_TYPE == "TYPE2": mega_shoot()
-		shoot(player_dir)
-		has_shot = true
-	
+	if self_body.ENEMY_TYPE != "TYPE3":
+		if has_shot == false:
+			if self_body.ENEMY_TYPE == "TYPE2": mega_shoot()
+			shoot(player_dir)
+			has_shot = true
+	else:
+		if has_shot == false:
+			vanish_attack(player_dir, distance_to_player)
+		
+		
 func shoot(player_dir):
 	var projectile : RigidBody2D = preload("res://scenes/projectiles/fire_ball.tscn").instantiate()
 	projectile.direction = player_dir
@@ -42,6 +46,17 @@ func mega_shoot():
 	shoot(Vector2.DOWN)	
 	shoot(Vector2.LEFT)
 	shoot(Vector2.RIGHT)
+
+func vanish_attack(dir, distance):
+	has_shot = true
+	self_body.vanish_effect.emitting = true
+	self_body.sprite.visible = false
+	await self_body.vanish_effect.finished
+	
+	self_body.global_position += dir * (distance + 20)
+	self_body.sprite.visible = true
+	shoot(-dir)
+	
 	
 func reset_shot(delta):
 	cooldown += delta
