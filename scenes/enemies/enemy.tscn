@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://1du512wqwxn1"]
+[gd_scene load_steps=16 format=3 uid="uid://1du512wqwxn1"]
 
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="1_fw500"]
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_u6h40"]
@@ -8,7 +8,81 @@
 [ext_resource type="Script" path="res://scripts/states/enemy_states/hostile.gd" id="5_d6eo2"]
 [ext_resource type="PackedScene" uid="uid://fgciukqxweru" path="res://scenes/components/hurt_box.tscn" id="7_drcld"]
 
+[sub_resource type="Animation" id="Animation_158di"]
+resource_name = "idle"
+length = 1.33335
+loop_mode = 2
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.333333, 0.5, 0.666667, 0.833333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_mf3p2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vbe23"]
+resource_name = "moving"
+length = 0.666683
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_iy3xu"]
+resource_name = "took_dmg"
+length = 0.333342
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nx30x"]
+_data = {
+"RESET": SubResource("Animation_mf3p2"),
+"idle": SubResource("Animation_158di"),
+"moving": SubResource("Animation_vbe23"),
+"took_dmg": SubResource("Animation_iy3xu")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4gsf"]
 radius = 1.0
@@ -18,7 +92,7 @@ height = 10.0
 radius = 53.0094
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qor1i"]
-size = Vector2(10, 10)
+size = Vector2(10, 15)
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
@@ -74,7 +148,7 @@ debug_color = Color(1, 0.741176, 0.298039, 0.419608)
 MAX_HP = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -5)
+position = Vector2(0, -7.5)
 shape = SubResource("RectangleShape2D_qor1i")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]

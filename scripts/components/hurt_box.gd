@@ -8,10 +8,12 @@ func _process(delta):
 	
 func _on_area_entered(area):
 	if (get_parent().is_in_group("enemy") and !area.is_hot): return
-	take_dmg(area.DMG_AMOUNT)
+	take_dmg(area.DMG_AMOUNT, area.global_position)
 	area.get_parent().queue_free()
 	
-func take_dmg(amount):
+func take_dmg(amount, dir):
+	get_parent().took_dmg = true
+	get_parent().knock_back(dir)
 	MAX_HP -= amount
 	print("dmged")
 	
