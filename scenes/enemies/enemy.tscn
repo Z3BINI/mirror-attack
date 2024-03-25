@@ -127,17 +127,18 @@ libraries = {
 }
 
 [node name="EnemySpriteSheet" type="Sprite2D" parent="."]
-position = Vector2(0, -12)
+position = Vector2(0, -5)
 texture = ExtResource("1_y1l6t")
 hframes = 8
 vframes = 6
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0, 6)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_b4gsf")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+position = Vector2(0, 7)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
@@ -145,6 +146,7 @@ shape = SubResource("CircleShape2D_2l5yv")
 debug_color = Color(1, 0.741176, 0.298039, 0.419608)
 
 [node name="HurtBox" parent="." instance=ExtResource("7_drcld")]
+position = Vector2(0, 7)
 MAX_HP = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]

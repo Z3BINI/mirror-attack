@@ -4,6 +4,7 @@ class_name  Idle
 @export var MIN_IDLE_TIME : float = 5
 @export var MAX_IDLE_TIME : float = 10
 
+
 var idle_time : float
 
 func randomize_idle_time():

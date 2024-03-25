@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dryr8o4sbpub4"]
+[gd_scene load_steps=16 format=3 uid="uid://dryr8o4sbpub4"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_6721y"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_r6p87"]
@@ -8,7 +8,81 @@
 [ext_resource type="Texture2D" uid="uid://ovr3kc24ymtf" path="res://assets/dungeonSprites_ v1.5/necromancer_.png" id="6_txjn8"]
 [ext_resource type="PackedScene" uid="uid://fgciukqxweru" path="res://scenes/components/hurt_box.tscn" id="7_j22r5"]
 
+[sub_resource type="Animation" id="Animation_qbtqh"]
+resource_name = "idle"
+length = 0.500013
+loop_mode = 1
+step = 0.125
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_xlsxr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ekwla"]
+resource_name = "moving"
+length = 0.666683
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_8p3jh"]
+resource_name = "took_dmg"
+length = 0.333342
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [24, 25, 26, 27]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nx30x"]
+_data = {
+"RESET": SubResource("Animation_xlsxr"),
+"idle": SubResource("Animation_qbtqh"),
+"moving": SubResource("Animation_ekwla"),
+"took_dmg": SubResource("Animation_8p3jh")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4gsf"]
 radius = 1.0
@@ -18,7 +92,7 @@ height = 10.0
 radius = 47.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qor1i"]
-size = Vector2(12, 13)
+size = Vector2(12, 15)
 
 [node name="Enemy2" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
@@ -53,17 +127,18 @@ libraries = {
 }
 
 [node name="EnemySpriteSheet" type="Sprite2D" parent="."]
-position = Vector2(0, -10)
+position = Vector2(0, -5)
 texture = ExtResource("6_txjn8")
 hframes = 8
-vframes = 6
+vframes = 5
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(0, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_b4gsf")
 
 [node name="PlayerDetector" type="Area2D" parent="."]
+position = Vector2(0, 5)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
@@ -71,10 +146,11 @@ shape = SubResource("CircleShape2D_2l5yv")
 debug_color = Color(1, 0.741176, 0.298039, 0.419608)
 
 [node name="HurtBox" parent="." instance=ExtResource("7_j22r5")]
+position = Vector2(0, 5)
 MAX_HP = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -6.5)
+position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_qor1i")
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
