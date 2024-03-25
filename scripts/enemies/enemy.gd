@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var PLAYER : CharacterBody2D
+@export_enum('TYPE1', 'TYPE2', 'TYPE3') var ENEMY_TYPE : String
 
 var player_in_range : bool = false
 
