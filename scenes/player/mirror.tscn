@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cis3ajnnfia5r"]
+
+[ext_resource type="Texture2D" uid="uid://cs4rgkjetdin1" path="res://assets/mirror.png" id="1_pah45"]
+[ext_resource type="Texture2D" uid="uid://cinswdm4iauc7" path="res://assets/dungeonSprites_ v1.5/mHeroHand_.png" id="2_aw8rh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_642yx"]
+radius = 6.0
+height = 20.0
+
+[node name="Mirror" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_pah45")
+offset = Vector2(0, -11)
+
+[node name="PlayerHandSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_aw8rh")
+
+[node name="ReflectDetect" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 12
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReflectDetect"]
+position = Vector2(0, -16)
+shape = SubResource("CapsuleShape2D_642yx")
