@@ -1,10 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://bn138qh4o3pk1"]
+[gd_scene load_steps=10 format=3 uid="uid://bn138qh4o3pk1"]
 
+[ext_resource type="Script" path="res://scripts/projectiles/fire_ball.gd" id="1_0a6yb"]
 [ext_resource type="Texture2D" uid="uid://c0g5xa50rjn5v" path="res://assets/Fireball/FB001.png" id="1_6gm8s"]
 [ext_resource type="Texture2D" uid="uid://cmwvlwy26vmej" path="res://assets/Fireball/FB002.png" id="2_npt5w"]
 [ext_resource type="Texture2D" uid="uid://b6tkxmkrqkh1s" path="res://assets/Fireball/FB003.png" id="3_b86xg"]
 [ext_resource type="Texture2D" uid="uid://8f2cjrve8cih" path="res://assets/Fireball/FB004.png" id="4_3pkuq"]
 [ext_resource type="Texture2D" uid="uid://xgg2ltvlfnrk" path="res://assets/Fireball/FB005.png" id="5_wig8u"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_qt0xk"]
+bounce = 1.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i7dxq"]
 animations = [{
@@ -30,18 +34,29 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ov2e5"]
-radius = 8.0
+radius = 1.68753
 
 [node name="FireBall" type="RigidBody2D"]
 collision_layer = 32
 collision_mask = 20
-lock_rotation = true
+physics_material_override = SubResource("PhysicsMaterial_qt0xk")
+gravity_scale = 0.0
+continuous_cd = 2
+max_contacts_reported = 5
+contact_monitor = true
+script = ExtResource("1_0a6yb")
+MOVE_STRENGTH = 10000.0
 
 [node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-13, 1)
+position = Vector2(-3, 0.280932)
+scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_i7dxq")
-frame_progress = 0.204156
+autoplay = "default"
+frame_progress = 0.0374256
 
 [node name="FireBallCollision" type="CollisionShape2D" parent="."]
+position = Vector2(-0.483216, 2.38419e-07)
 shape = SubResource("CircleShape2D_ov2e5")
 debug_color = Color(0.964706, 0.0941176, 0.403922, 0.419608)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
