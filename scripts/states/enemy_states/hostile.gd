@@ -8,7 +8,7 @@ var has_shot : bool = false
 var cooldown : float = 0
 
 func enter_state():
-	pass
+	mega_shoot()
 
 func update(delta):
 	if !self_body.player_in_range:
@@ -23,7 +23,6 @@ func physics_update(_delta):
 	
 	self_body.velocity = self_body.velocity.move_toward(player_dir * CHASE_SPEED, 2)
 	if distance_to_player <= 40:
-		print(player_dir)
 		self_body.velocity = Vector2.ZERO
 	
 	
@@ -36,8 +35,12 @@ func shoot(player_dir):
 	projectile.direction = player_dir
 	projectile.position = self_body.global_position
 	add_child(projectile)
-	await get_tree().create_timer(0.1).timeout
-	projectile.damage_box.enable_collision()
+
+func mega_shoot():
+	shoot(Vector2.UP)
+	shoot(Vector2.DOWN)	
+	shoot(Vector2.LEFT)
+	shoot(Vector2.RIGHT)
 	
 func reset_shot(delta):
 	cooldown += delta
