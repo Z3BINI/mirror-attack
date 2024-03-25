@@ -7,7 +7,9 @@ func _process(delta):
 		die()
 	
 func _on_area_entered(area):
+	if (get_parent().is_in_group("enemy") and !area.is_hot): return
 	take_dmg(area.DMG_AMOUNT)
+	area.get_parent().queue_free()
 	
 func take_dmg(amount):
 	MAX_HP -= amount
