@@ -17,6 +17,8 @@ height = 10.0
 radius = 78.0577
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_u6h40")
 
@@ -58,3 +60,6 @@ collision_layer = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 shape = SubResource("CircleShape2D_2l5yv")
 debug_color = Color(1, 0.741176, 0.298039, 0.419608)
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
