@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://rij7ej0q4exh"]
+[gd_scene load_steps=6 format=3 uid="uid://rij7ej0q4exh"]
 
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="1_ur2qj"]
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="2_bf2re"]
 [ext_resource type="PackedScene" uid="uid://1du512wqwxn1" path="res://scenes/enemies/enemy.tscn" id="3_la4cg"]
 [ext_resource type="PackedScene" uid="uid://dryr8o4sbpub4" path="res://scenes/enemies/enemy_2.tscn" id="4_iqb1p"]
+[ext_resource type="PackedScene" uid="uid://eor44nhytt4i" path="res://scenes/enemies/enemy_3.tscn" id="5_fmgk5"]
 
 [node name="TestLevel" type="Node2D"]
 position = Vector2(0, 1)
@@ -19,4 +20,8 @@ PLAYER = NodePath("../Player")
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_iqb1p")]
 position = Vector2(215, 64)
+PLAYER = NodePath("../Player")
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_fmgk5")]
+position = Vector2(-40, 106)
 PLAYER = NodePath("../Player")
