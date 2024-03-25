@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bn138qh4o3pk1"]
+
+[ext_resource type="Texture2D" uid="uid://c0g5xa50rjn5v" path="res://assets/Fireball/FB001.png" id="1_6gm8s"]
+[ext_resource type="Texture2D" uid="uid://cmwvlwy26vmej" path="res://assets/Fireball/FB002.png" id="2_npt5w"]
+[ext_resource type="Texture2D" uid="uid://b6tkxmkrqkh1s" path="res://assets/Fireball/FB003.png" id="3_b86xg"]
+[ext_resource type="Texture2D" uid="uid://8f2cjrve8cih" path="res://assets/Fireball/FB004.png" id="4_3pkuq"]
+[ext_resource type="Texture2D" uid="uid://xgg2ltvlfnrk" path="res://assets/Fireball/FB005.png" id="5_wig8u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i7dxq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6gm8s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_npt5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_b86xg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3pkuq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wig8u")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ov2e5"]
+radius = 8.0
+
+[node name="FireBall" type="RigidBody2D"]
+collision_layer = 32
+collision_mask = 20
+lock_rotation = true
+
+[node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-13, 1)
+sprite_frames = SubResource("SpriteFrames_i7dxq")
+frame_progress = 0.204156
+
+[node name="FireBallCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ov2e5")
+debug_color = Color(0.964706, 0.0941176, 0.403922, 0.419608)
