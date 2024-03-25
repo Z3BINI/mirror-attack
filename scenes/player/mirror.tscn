@@ -17,9 +17,9 @@ script = ExtResource("2_8x1kc")
 [node name="PlayerHandSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_aw8rh")
 
-[node name="ReflectDetect" type="Area2D" parent="."]
+[node name="ReflectDetect" type="StaticBody2D" parent="."]
 collision_layer = 16
-collision_mask = 12
+collision_mask = 44
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ReflectDetect"]
 position = Vector2(0, -16)
