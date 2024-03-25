@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://1du512wqwxn1"]
+
+[ext_resource type="Texture2D" uid="uid://c44l7sreun3xc" path="res://assets/dungeonSprites_ v1.5/ghost_.png" id="1_y1l6t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4gsf"]
+radius = 1.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2l5yv"]
+radius = 78.0577
+
+[node name="Enemy" type="CharacterBody2D"]
+motion_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="EnemySpriteSheet" type="Sprite2D" parent="."]
+position = Vector2(0, -12)
+texture = ExtResource("1_y1l6t")
+hframes = 8
+vframes = 6
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b4gsf")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_2l5yv")
+debug_color = Color(1, 0.741176, 0.298039, 0.419608)
