@@ -1,15 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://rij7ej0q4exh"]
+[gd_scene load_steps=4 format=3 uid="uid://rij7ej0q4exh"]
 
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="1_ur2qj"]
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="2_bf2re"]
 [ext_resource type="PackedScene" uid="uid://1du512wqwxn1" path="res://scenes/enemies/enemy.tscn" id="3_la4cg"]
-[ext_resource type="PackedScene" uid="uid://bn138qh4o3pk1" path="res://scenes/projectiles/fire_ball.tscn" id="4_xe1hu"]
 
 [node name="TestLevel" type="Node2D"]
 position = Vector2(0, 1)
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("1_ur2qj")]
-layer_0/tile_data = PackedInt32Array(262145, 0, 1, 327681, 0, 1, 327686, 327680, 2, 262150, 327680, 2)
 layer_1/tile_data = PackedInt32Array(65537, 0, 0, 131073, 0, 1, 196609, 0, 0, 393217, 0, 3, 458753, 0, 4, 65538, 65536, 0, 131074, 65536, 1, 196610, 65536, 2, 262146, 393216, 1, 327682, 393216, 1, 393218, 65536, 3, 458754, 65536, 4, 65539, 131072, 0, 131075, 131072, 1, 196611, 131072, 2, 262147, 458752, 0, 327683, 458752, 1, 393219, 131072, 3, 458755, 131072, 4, 65540, 196608, 0, 131076, 196608, 1, 196612, 196608, 2, 262148, 524288, 0, 327684, 524288, 1, 393220, 196608, 3, 458756, 196608, 4, 65541, 262144, 0, 131077, 589824, 0, 196613, 393216, 1, 262149, 458752, 2, 327685, 458752, 2, 393221, 262144, 3, 458757, 262144, 4, 65542, 327680, 0, 131078, 327680, 0, 196614, 327680, 1, 393222, 327680, 3, 458758, 327680, 4)
 
 [node name="Player" parent="." instance=ExtResource("2_bf2re")]
@@ -17,6 +15,3 @@ position = Vector2(60, 86)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_la4cg")]
 PLAYER = NodePath("../Player")
-
-[node name="FireBall" parent="." instance=ExtResource("4_xe1hu")]
-position = Vector2(67, 50)
