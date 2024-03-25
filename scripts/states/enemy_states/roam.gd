@@ -19,6 +19,9 @@ func enter_state():
 	randomize_roam_dir()
 
 func update(delta):
+	if self_body.player_in_range:
+		state_changed.emit(self, 'hostile')
+	
 	if roam_time > 0:
 		roam_time -= delta
 	else:

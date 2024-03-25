@@ -6,8 +6,9 @@ class_name  Hostile
 func enter_state():
 	pass
 
-func update(delta):
-	pass
+func update(_delta):
+	if !self_body.player_in_range:
+		state_changed.emit(self, 'roam')
 
 func physics_update(_delta):
 	var player_dir : Vector2 = (self_body.PLAYER.global_position - self_body.global_position).normalized()
