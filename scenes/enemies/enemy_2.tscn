@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://dryr8o4sbpub4"]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_6721y"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_r6p87"]
+[ext_resource type="Script" path="res://scripts/states/enemy_states/roam.gd" id="3_1sqtk"]
+[ext_resource type="Script" path="res://scripts/states/enemy_states/idle.gd" id="4_3hgj2"]
+[ext_resource type="Script" path="res://scripts/states/enemy_states/hostile.gd" id="5_quuhl"]
+[ext_resource type="Texture2D" uid="uid://ovr3kc24ymtf" path="res://assets/dungeonSprites_ v1.5/necromancer_.png" id="6_txjn8"]
+[ext_resource type="PackedScene" uid="uid://fgciukqxweru" path="res://scenes/components/hurt_box.tscn" id="7_j22r5"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nx30x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4gsf"]
+radius = 1.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2l5yv"]
+radius = 47.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qor1i"]
+size = Vector2(12, 13)
+
+[node name="Enemy2" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 2
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_6721y")
+ENEMY_TYPE = "TYPE2"
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_r6p87")
+starting_state = NodePath("Idle")
+
+[node name="Roam" type="Node" parent="StateMachine" node_paths=PackedStringArray("self_body")]
+script = ExtResource("3_1sqtk")
+self_body = NodePath("../..")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("self_body")]
+script = ExtResource("4_3hgj2")
+MIN_IDLE_TIME = 3.0
+MAX_IDLE_TIME = 7.0
+self_body = NodePath("../..")
+
+[node name="Hostile" type="Node" parent="StateMachine" node_paths=PackedStringArray("self_body")]
+script = ExtResource("5_quuhl")
+CHASE_SPEED = 30.0
+SHOOT_COOLDOWN = 2.0
+self_body = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nx30x")
+}
+
+[node name="EnemySpriteSheet" type="Sprite2D" parent="."]
+position = Vector2(0, -10)
+texture = ExtResource("6_txjn8")
+hframes = 8
+vframes = 6
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b4gsf")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_2l5yv")
+debug_color = Color(1, 0.741176, 0.298039, 0.419608)
+
+[node name="HurtBox" parent="." instance=ExtResource("7_j22r5")]
+MAX_HP = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_qor1i")
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]
