@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://1du512wqwxn1"]
+[gd_scene load_steps=10 format=3 uid="uid://1du512wqwxn1"]
 
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="1_fw500"]
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_u6h40"]
 [ext_resource type="Texture2D" uid="uid://c44l7sreun3xc" path="res://assets/dungeonSprites_ v1.5/ghost_.png" id="1_y1l6t"]
 [ext_resource type="Script" path="res://scripts/states/enemy_states/roam.gd" id="2_qtw1b"]
 [ext_resource type="Script" path="res://scripts/states/enemy_states/idle.gd" id="3_k0fin"]
+[ext_resource type="Script" path="res://scripts/states/enemy_states/hostile.gd" id="5_d6eo2"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nx30x"]
 
@@ -29,6 +30,10 @@ self_body = NodePath("../..")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("self_body")]
 script = ExtResource("3_k0fin")
+self_body = NodePath("../..")
+
+[node name="Hostile" type="Node" parent="StateMachine" node_paths=PackedStringArray("self_body")]
+script = ExtResource("5_d6eo2")
 self_body = NodePath("../..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
