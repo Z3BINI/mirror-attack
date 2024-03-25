@@ -8,7 +8,7 @@ var has_shot : bool = false
 var cooldown : float = 0
 
 func enter_state():
-	mega_shoot()
+	pass
 
 func update(delta):
 	if !self_body.player_in_range:
@@ -27,6 +27,7 @@ func physics_update(_delta):
 	
 	
 	if has_shot == false:
+		if self_body.ENEMY_TYPE == "TYPE2": mega_shoot()
 		shoot(player_dir)
 		has_shot = true
 	
