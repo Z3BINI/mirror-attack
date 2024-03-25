@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bl4wfwlb1kwnb"]
+[gd_scene load_steps=5 format=3 uid="uid://bl4wfwlb1kwnb"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0p8j5"]
 [ext_resource type="Texture2D" uid="uid://bn226vstmrwa0" path="res://assets/dungeonSprites_ v1.5/mHero_.png" id="1_sd8bw"]
+[ext_resource type="PackedScene" uid="uid://cis3ajnnfia5r" path="res://scenes/player/mirror.tscn" id="3_dko47"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aa18v"]
 radius = 1.0
@@ -23,6 +24,11 @@ position = Vector2(0, -12)
 texture = ExtResource("1_sd8bw")
 hframes = 8
 vframes = 6
+
+[node name="HandPos" type="Node2D" parent="."]
+
+[node name="Mirror" parent="HandPos" instance=ExtResource("3_dko47")]
+position = Vector2(8, -6)
 
 [node name="Feet" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
