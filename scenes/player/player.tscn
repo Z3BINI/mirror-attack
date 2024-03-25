@@ -26,9 +26,10 @@ hframes = 8
 vframes = 6
 
 [node name="HandPos" type="Node2D" parent="."]
+position = Vector2(0, -6)
 
 [node name="Mirror" parent="HandPos" instance=ExtResource("3_dko47")]
-position = Vector2(8, -6)
+position = Vector2(8, 0)
 
 [node name="Feet" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
