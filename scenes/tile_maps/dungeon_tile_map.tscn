@@ -341,6 +341,6 @@ sources/0 = SubResource("TileSetAtlasSource_c6c1b")
 tile_set = SubResource("TileSet_u3wrj")
 format = 2
 layer_0/name = "in_front"
-layer_0/z_index = 10
+layer_0/z_index = 1
 layer_1/name = "behind"
 layer_1/tile_data = PackedInt32Array()
