@@ -66,6 +66,7 @@ func knock_back(dir):
 	velocity = ((global_position - dir).normalized() * KNOCK_BACK_STRENGTH)
 
 func animation_manager():
+	if dead: return
 	if velocity.x != 0: $PlayerSpriteSheet.flip_h = (velocity.x < 0) 
 	
 	if took_dmg:
@@ -84,4 +85,5 @@ func die():
 		dead = true
 		$HandPos.queue_free()
 		animation_player.play("die")
+		
 		
