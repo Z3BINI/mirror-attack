@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="1_ur2qj"]
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="2_bf2re"]
-[ext_resource type="PackedScene" uid="uid://eor44nhytt4i" path="res://scenes/enemies/enemy_3.tscn" id="5_fmgk5"]
+[ext_resource type="PackedScene" uid="uid://1du512wqwxn1" path="res://scenes/enemies/enemy.tscn" id="3_la4cg"]
 
 [node name="TestLevel" type="Node2D"]
 position = Vector2(0, 1)
@@ -13,5 +13,6 @@ layer_1/tile_data = PackedInt32Array(65537, 458752, 2, 131073, 458752, 2, 196609
 [node name="Player" parent="." instance=ExtResource("2_bf2re")]
 position = Vector2(116, 99)
 
-[node name="Enemy3" parent="." node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_fmgk5")]
+[node name="Enemy" parent="." node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_la4cg")]
 PLAYER = NodePath("../Player")
+MAX_HP = 100.0

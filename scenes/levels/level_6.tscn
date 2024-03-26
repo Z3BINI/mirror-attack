@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://7gt6a3nn1rf3"]
+[gd_scene load_steps=9 format=3 uid="uid://7gt6a3nn1rf3"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_o7y2i"]
+[ext_resource type="PackedScene" uid="uid://qohim7ww1ql1" path="res://scenes/levels/level_7.tscn" id="2_cb5t3"]
 [ext_resource type="PackedScene" uid="uid://dryr8o4sbpub4" path="res://scenes/enemies/enemy_2.tscn" id="2_jutv5"]
 [ext_resource type="PackedScene" uid="uid://eor44nhytt4i" path="res://scenes/enemies/enemy_3.tscn" id="3_hxims"]
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="3_qa1s7"]
@@ -12,6 +13,7 @@ size = Vector2(32, 29)
 
 [node name="Level6" type="Node2D"]
 script = ExtResource("1_o7y2i")
+NEXT_LEVEL = ExtResource("2_cb5t3")
 
 [node name="Enemies" type="Node" parent="."]
 
