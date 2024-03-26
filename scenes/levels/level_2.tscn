@@ -18,6 +18,7 @@ script = ExtResource("1_m72sg")
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_7drto")]
 position = Vector2(-8, -9)
 PLAYER = NodePath("../../Player")
+MAX_HP = 4.0
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("1_0fxxu")]
 layer_0/tile_data = PackedInt32Array(10, 458752, 5, -65526, 458752, 4, -16, 262144, 6, 65520, 327680, 805306374, -131076, 589824, 5, 131075, 589824, 5, -262138, 589824, 4, -327689, 0, 9, -393208, 0, 9, -393211, 0, 9, -327686, 0, 9, -327683, 0, 9, -393214, 0, 9, -65546, 65536, 9, 131062, 65536, 9, 65522, 524288, 6, -13, 458752, 7)
@@ -27,10 +28,10 @@ layer_1/tile_data = PackedInt32Array(393206, 196608, 4, 393207, 131072, 4, 39320
 position = Vector2(-249, 2)
 
 [node name="DoorCheck" parent="." instance=ExtResource("3_fgfkb")]
-position = Vector2(117, 0)
+position = Vector2(206, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorCheck"]
-position = Vector2(33, 0)
+position = Vector2(-51, 0)
 shape = SubResource("RectangleShape2D_sp4tk")
 
 [node name="Tutorial" type="Node" parent="."]
