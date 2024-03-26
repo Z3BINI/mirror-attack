@@ -20,7 +20,7 @@ func _physics_process(delta):
 	rotation = linear_velocity.angle()
 	direction = linear_velocity.normalized()
 	
-	if bounce_counter == MAX_BOUNCE or existance_time == MAX_EXISTANCE_TIME:
+	if bounce_counter == MAX_BOUNCE or existance_time >= MAX_EXISTANCE_TIME:
 		destroy()
 
 func _on_body_entered(body):
