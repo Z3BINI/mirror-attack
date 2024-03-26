@@ -81,6 +81,7 @@ func animation_manager():
 		
 func die():
 	if !dead:
+		dead = true
 		$HandPos.queue_free()
 		animation_player.play("die")
-		dead = true
+		
