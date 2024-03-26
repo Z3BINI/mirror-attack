@@ -57,6 +57,13 @@ func boss_mechanics(delta, player_dir, distance):
 	
 func shoot(player_dir):
 	var projectile : RigidBody2D = preload("res://scenes/projectiles/fire_ball.tscn").instantiate()
+	
+	match(self_body.ENEMY_TYPE):
+		"TYPE3":
+			projectile.modulate = Color(0.08, 1, 0.54, 1)
+		"BOSS":
+			projectile.modulate = Color.BLACK
+	
 	projectile.direction = player_dir
 	projectile.position = self_body.global_position
 	add_child(projectile)
