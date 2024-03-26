@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var MAX_HP : float = 10
+var MAX_HP : float = 10
 
 func _process(delta):
 	if MAX_HP <= 0:

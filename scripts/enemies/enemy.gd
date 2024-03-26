@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export_enum('TYPE1', 'TYPE2', 'TYPE3', 'BOSS') var ENEMY_TYPE : String
 @export var vanish_effect : GPUParticles2D
 @export var KNOCK_BACK_STRENGTH : float = 175
+@export var MAX_HP : float = 2
 
 var player_in_range : bool = false
 var sprite : Sprite2D
@@ -15,6 +16,7 @@ var dead : bool = false
 func _ready():
 	sprite = $EnemySpriteSheet
 	animation_player = $AnimationPlayer
+	$HurtBox.MAX_HP = MAX_HP
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
