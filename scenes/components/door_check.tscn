@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bg0bfcampdd1v"]
 
 [ext_resource type="Script" path="res://scripts/components/door_check.gd" id="1_21yny"]
-[ext_resource type="LabelSettings" uid="uid://c7uayjepbooid" path="res://assets/font/label_sets.tres" id="2_oyqc7"]
+[ext_resource type="LabelSettings" uid="uid://dqc7u8wpy2vbt" path="res://assets/font/label_sets_noti.tres" id="2_lbsus"]
 
 [node name="DoorCheck" type="Area2D"]
 z_index = 10
@@ -18,7 +18,7 @@ size_flags_horizontal = 4
 text = "Good Job
 Press [E] 
 to move on!"
-label_settings = ExtResource("2_oyqc7")
+label_settings = ExtResource("2_lbsus")
 horizontal_alignment = 1
 
 [node name="BlockLabel" type="Label" parent="."]
@@ -31,7 +31,7 @@ size_flags_horizontal = 4
 text = "Before you can leave
 you must clear
 the room!"
-label_settings = ExtResource("2_oyqc7")
+label_settings = ExtResource("2_lbsus")
 horizontal_alignment = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
