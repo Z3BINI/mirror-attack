@@ -104,7 +104,7 @@ radius = 1.0
 height = 10.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2tti"]
-size = Vector2(10, 16)
+size = Vector2(6, 12)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 5
@@ -131,7 +131,7 @@ vframes = 6
 [node name="HandPos" type="Node2D" parent="."]
 
 [node name="Mirror" parent="HandPos" instance=ExtResource("3_dko47")]
-position = Vector2(8, 0)
+position = Vector2(10, 0)
 
 [node name="Feet" type="CollisionShape2D" parent="."]
 position = Vector2(0, 5)
