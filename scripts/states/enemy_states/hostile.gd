@@ -6,7 +6,7 @@ class_name  Hostile
 
 var has_shot : bool = false
 var cooldown : float = 0
-
+var angle : float = 0
 
 func enter_state():
 	pass
@@ -23,9 +23,10 @@ func physics_update(delta):
 	var distance_to_player : float = (self_body.PLAYER.global_position - self_body.global_position).length()
 	
 	self_body.velocity = self_body.velocity.move_toward(player_dir * CHASE_SPEED, 2)
-	if distance_to_player <= 40:
-		self_body.velocity = Vector2.ZERO
 	
+	if distance_to_player <= 65:
+		circle_player(self_body.PLAYER.global_position, player_dir, delta)
+			
 	if self_body.ENEMY_TYPE != "TYPE3" and self_body.ENEMY_TYPE != "BOSS":
 		if has_shot == false:
 			if self_body.ENEMY_TYPE == "TYPE2": mega_shoot()
@@ -92,3 +93,11 @@ func reset_shot(delta):
 		has_shot = false
 		cooldown = 0
 
+func circle_player(player_pos, player_dir, delta):
+	angle += delta
+	# Calculate the offset position from the player's position along the direction vector multiplied by the desired distance
+	var offset_position = player_pos + player_dir * 150
+	# Calculate the destination position around the offset position
+	var destination = offset_position + Vector2(cos(angle), sin(angle)) * 150
+	# Calculate the velocity towards the destination
+	self_body.velocity = (destination - self_body.global_position).normalized() * 20
