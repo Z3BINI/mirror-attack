@@ -39,7 +39,7 @@ func physics_update(delta):
 				has_shot = true
 			
 	if self_body.ENEMY_TYPE == "BOSS":
-		boss_mechanics(delta, player_dir, distance_to_player)
+		boss_mechanics(delta, player_dir, self_body.PLAYER.global_position)
 		
 	
 func boss_mechanics(delta, player_dir, player_pos):
