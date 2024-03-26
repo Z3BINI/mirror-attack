@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dqr7yo8hfkxy3"]
+[gd_scene load_steps=20 format=3 uid="uid://dqr7yo8hfkxy3"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_6721y"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_r6p87"]
@@ -76,9 +76,26 @@ tracks/0/keys = {
 "values": [32, 33, 34, 35]
 }
 
+[sub_resource type="Animation" id="Animation_nschy"]
+resource_name = "die"
+length = 0.40001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nx30x"]
 _data = {
 "RESET": SubResource("Animation_mm8mi"),
+"die": SubResource("Animation_nschy"),
 "idle": SubResource("Animation_s03th"),
 "moving": SubResource("Animation_5hn7u"),
 "took_dmg": SubResource("Animation_4emyt")
