@@ -14,7 +14,7 @@ func enter_state():
 	randomize_idle_time()
 
 func update(delta):
-	if self_body.player_in_range:
+	if self_body.player_in_range and !self_body.PLAYER.dead:
 		state_changed.emit(self, 'hostile')
 	
 	if idle_time > 0:

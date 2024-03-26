@@ -12,7 +12,7 @@ func enter_state():
 	pass
 
 func update(delta):
-	if !self_body.player_in_range:
+	if !self_body.player_in_range or self_body.PLAYER.dead:
 		state_changed.emit(self, 'roam')
 		
 	if has_shot:
