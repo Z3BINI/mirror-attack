@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://beyaouhyxj7kd"]
+[gd_scene load_steps=8 format=3 uid="uid://beyaouhyxj7kd"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_b1tmv"]
+[ext_resource type="PackedScene" uid="uid://cw5vulnbkcj5t" path="res://scenes/levels/level_4.tscn" id="2_2jpfi"]
 [ext_resource type="PackedScene" uid="uid://1du512wqwxn1" path="res://scenes/enemies/enemy.tscn" id="2_wonvd"]
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="3_tpwgl"]
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="4_h855v"]
@@ -11,20 +12,24 @@ size = Vector2(32, 29)
 
 [node name="Level3" type="Node2D"]
 script = ExtResource("1_b1tmv")
+NEXT_LEVEL = ExtResource("2_2jpfi")
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_wonvd")]
 position = Vector2(-96, -26)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_wonvd")]
 position = Vector2(0, 25)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_wonvd")]
 position = Vector2(103, -32)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("3_tpwgl")]
 layer_0/tile_data = PackedInt32Array(-327682, 262144, 7, -393215, 262144, 7, -327683, 0, 9, -393214, 0, 9, 720895, 589824, 5, 655360, 327680, 1342177286, -262154, 262144, 6, -327671, 262144, 268435462, 131066, 458752, 7, 65540, 524288, 6, 327670, 589824, 4, 458751, 524288, 6)
