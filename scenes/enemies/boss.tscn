@@ -1,0 +1,187 @@
+[gd_scene load_steps=19 format=3 uid="uid://dqr7yo8hfkxy3"]
+
+[ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_6721y"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_r6p87"]
+[ext_resource type="Script" path="res://scripts/states/enemy_states/roam.gd" id="3_1sqtk"]
+[ext_resource type="Script" path="res://scripts/states/enemy_states/idle.gd" id="4_3hgj2"]
+[ext_resource type="Script" path="res://scripts/states/enemy_states/hostile.gd" id="5_quuhl"]
+[ext_resource type="Texture2D" uid="uid://b0iqeyyk6lphb" path="res://assets/dungeonSprites_ v1.5/goblinKing_.png" id="6_rj36l"]
+[ext_resource type="PackedScene" uid="uid://fgciukqxweru" path="res://scenes/components/hurt_box.tscn" id="7_j22r5"]
+
+[sub_resource type="Animation" id="Animation_mm8mi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_s03th"]
+resource_name = "idle"
+length = 0.666685
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_5hn7u"]
+resource_name = "moving"
+length = 0.666683
+loop_mode = 1
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_4emyt"]
+resource_name = "took_dmg"
+length = 0.333342
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nx30x"]
+_data = {
+"RESET": SubResource("Animation_mm8mi"),
+"idle": SubResource("Animation_s03th"),
+"moving": SubResource("Animation_5hn7u"),
+"took_dmg": SubResource("Animation_4emyt")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4gsf"]
+radius = 1.0
+height = 10.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2l5yv"]
+radius = 88.0511
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qor1i"]
+size = Vector2(12, 13)
+
+[sub_resource type="Gradient" id="Gradient_mikqb"]
+offsets = PackedFloat32Array(0, 0.538462, 1)
+colors = PackedColorArray(0.125911, 0.125911, 0.125911, 1, 0.35907, 0.359069, 0.359069, 1, 0.796243, 0.796243, 0.796243, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_pactg"]
+gradient = SubResource("Gradient_mikqb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8bja8"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector3(0, -98, 0)
+scale_min = 2.0
+scale_max = 15.0
+color_ramp = SubResource("GradientTexture1D_pactg")
+turbulence_enabled = true
+turbulence_noise_speed_random = 0.07
+turbulence_influence_max = 1.0
+turbulence_initial_displacement_max = 100.0
+
+[node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("vanish_effect") groups=["enemy"]]
+collision_layer = 2
+collision_mask = 4
+motion_mode = 1
+script = ExtResource("1_6721y")
+ENEMY_TYPE = "BOSS"
+vanish_effect = NodePath("VanishEffect")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("2_r6p87")
+starting_state = NodePath("Idle")
+
+[node name="Roam" type="Node" parent="StateMachine" node_paths=PackedStringArray("self_body")]
+script = ExtResource("3_1sqtk")
+self_body = NodePath("../..")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("self_body")]
+script = ExtResource("4_3hgj2")
+MIN_IDLE_TIME = 3.0
+MAX_IDLE_TIME = 7.0
+self_body = NodePath("../..")
+
+[node name="Hostile" type="Node" parent="StateMachine" node_paths=PackedStringArray("self_body")]
+script = ExtResource("5_quuhl")
+CHASE_SPEED = 30.0
+SHOOT_COOLDOWN = 2.0
+self_body = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nx30x")
+}
+
+[node name="EnemySpriteSheet" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("6_rj36l")
+hframes = 8
+vframes = 6
+
+[node name="Feet" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b4gsf")
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+position = Vector2(0, 4)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource("CircleShape2D_2l5yv")
+debug_color = Color(1, 0.741176, 0.298039, 0.419608)
+
+[node name="HurtBox" parent="." instance=ExtResource("7_j22r5")]
+position = Vector2(0, 4)
+MAX_HP = 4.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_qor1i")
+
+[node name="VanishEffect" type="GPUParticles2D" parent="."]
+position = Vector2(0, 4)
+emitting = false
+amount = 32
+process_material = SubResource("ParticleProcessMaterial_8bja8")
+lifetime = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

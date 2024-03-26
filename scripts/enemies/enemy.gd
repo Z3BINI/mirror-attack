@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var PLAYER : CharacterBody2D
-@export_enum('TYPE1', 'TYPE2', 'TYPE3') var ENEMY_TYPE : String
+@export_enum('TYPE1', 'TYPE2', 'TYPE3', 'BOSS') var ENEMY_TYPE : String
 @export var vanish_effect : GPUParticles2D
 @export var KNOCK_BACK_STRENGTH : float = 175
 
