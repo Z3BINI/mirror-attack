@@ -35,14 +35,14 @@ func physics_update(delta):
 	else:
 		if self_body.ENEMY_TYPE != "BOSS":
 			if has_shot == false:
-				vanish_attack(player_dir, distance_to_player)
+				vanish_attack(self_body.PLAYER.global_position)
 				has_shot = true
 			
 	if self_body.ENEMY_TYPE == "BOSS":
 		boss_mechanics(delta, player_dir, distance_to_player)
 		
 	
-func boss_mechanics(delta, player_dir, distance):
+func boss_mechanics(delta, player_dir, player_pos):
 	if has_shot == false:
 		var decision = randi_range(0, 2)
 		match(decision):
@@ -51,7 +51,7 @@ func boss_mechanics(delta, player_dir, distance):
 			1:
 				mega_shoot()
 			2:
-				vanish_attack(player_dir, distance)
+				vanish_attack(player_pos)
 				
 		has_shot = true
 		
@@ -75,15 +75,15 @@ func mega_shoot():
 	shoot(Vector2.LEFT)
 	shoot(Vector2.RIGHT)
 
-func vanish_attack(dir, distance):
+func vanish_attack(player_pos):
 	has_shot = true
 	self_body.vanish_effect.emitting = true
 	self_body.sprite.visible = false
 	await self_body.vanish_effect.finished
 	
-	self_body.global_position += dir * (distance + 20)
+	self_body.global_position = player_pos
 	self_body.sprite.visible = true
-	shoot(-dir)
+	shoot((self_body.PLAYER.global_position - self_body.global_position).normalized())
 	
 	
 func reset_shot(delta):
