@@ -26,6 +26,7 @@ func _physics_process(delta):
 func _on_body_entered(body):
 	bounce_counter += 1
 	if body.name == "ReflectDetect":
+		modulate = Color(0, 0, 1, 1)
 		damage_box.is_hot = true
 	
 
