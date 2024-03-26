@@ -11,6 +11,7 @@ var sprite : Sprite2D
 var took_dmg : bool = false
 var animation_player : AnimationPlayer
 var dead : bool = false
+var vanish_immunity : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

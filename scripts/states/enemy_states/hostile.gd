@@ -8,6 +8,7 @@ var has_shot : bool = false
 var cooldown : float = 0
 var angle : float = 0
 
+
 func enter_state():
 	pass
 
@@ -78,12 +79,14 @@ func mega_shoot():
 func vanish_attack(player_pos):
 	has_shot = true
 	self_body.vanish_effect.emitting = true
+	self_body.vanish_immunity = true
 	self_body.sprite.visible = false
 	await self_body.vanish_effect.finished
 	
 	self_body.global_position = player_pos
 	self_body.sprite.visible = true
 	shoot((self_body.PLAYER.global_position - self_body.global_position).normalized())
+	self_body.vanish_immunity = false
 	
 	
 func reset_shot(delta):

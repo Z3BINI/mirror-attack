@@ -3,7 +3,7 @@ extends Area2D
 var MAX_HP : float = 10
 
 func _on_area_entered(area):
-	if (get_parent().is_in_group("enemy") and !area.is_hot): return
+	if (get_parent().is_in_group("enemy") and (!area.is_hot or get_parent().vanish_immunity)): return
 	take_dmg(area.DMG_AMOUNT, area.global_position)
 	area.get_parent().queue_free()
 	
