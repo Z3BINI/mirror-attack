@@ -33,13 +33,12 @@ position = Vector2(-7, -37)
 PLAYER = NodePath("../../Player")
 
 [node name="Enemy5" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_5xdrv")]
-position = Vector2(-105, 48)
+position = Vector2(-105, -38)
 PLAYER = NodePath("../../Player")
 
-[node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("PLAYER", "vanish_effect") instance=ExtResource("4_5xdrv")]
-position = Vector2(-104, -33)
+[node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_5xdrv")]
+position = Vector2(-100, 59)
 PLAYER = NodePath("../../Player")
-vanish_effect = NodePath("../Enemy5/VanishEffect")
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("2_0wdee")]
 layer_0/tile_data = PackedInt32Array(-11, 524288, 4, 65525, 524288, 5, 131062, 65536, 9, -65546, 65536, 9, -65525, 458752, 7, 327670, 327680, 1073741830, -327671, 327680, 6, -262154, 262144, 6, -327687, 0, 9, -327683, 0, 9, -393215, 0, 9, -393211, 0, 9, 65545, 65536, 268435465, -131063, 65536, 268435465, -131078, 524288, 6, 262140, 458752, 1342177287)
