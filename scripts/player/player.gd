@@ -14,6 +14,7 @@ var input_direction : Vector2
 var fatigued : bool = false
 var animation_player : AnimationPlayer
 var took_dmg : bool = false
+var dead : bool = false
 
 func _ready():
 	animation_player = $AnimationPlayer

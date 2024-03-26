@@ -18,7 +18,7 @@ func take_dmg(amount, dir):
 	print("dmged")
 	
 func die():
-	print("dead")
+	get_parent().dead = true
 	
 
 

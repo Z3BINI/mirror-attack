@@ -9,6 +9,7 @@ var player_in_range : bool = false
 var sprite : Sprite2D
 var took_dmg : bool = false
 var animation_player : AnimationPlayer
+var dead : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,11 +34,17 @@ func knock_back(dir):
 	
 func animation_manager():
 	sprite.flip_h = (velocity.x < 0) 
-	
+		
 	if took_dmg:
 			animation_player.play("took_dmg")
 			await animation_player.animation_finished
 			took_dmg = false
+			
+	if dead:
+		velocity = Vector2.ZERO
+		animation_player.play("die")
+		await animation_player.animation_finished
+		queue_free()
 	
 	if velocity != Vector2.ZERO:
 		animation_player.play("moving")
