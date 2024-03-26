@@ -105,8 +105,8 @@ _data = {
 radius = 1.0
 height = 10.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2l5yv"]
-radius = 47.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_edkvq"]
+radius = 120.067
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qor1i"]
 size = Vector2(12, 15)
@@ -117,6 +117,7 @@ collision_mask = 4
 motion_mode = 1
 script = ExtResource("1_6721y")
 ENEMY_TYPE = "TYPE2"
+KNOCK_BACK_STRENGTH = 50.0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
 script = ExtResource("2_r6p87")
@@ -159,12 +160,11 @@ position = Vector2(0, 5)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-shape = SubResource("CircleShape2D_2l5yv")
+shape = SubResource("CircleShape2D_edkvq")
 debug_color = Color(1, 0.741176, 0.298039, 0.419608)
 
 [node name="HurtBox" parent="." instance=ExtResource("7_j22r5")]
 position = Vector2(0, 5)
-MAX_HP = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -5.5)
