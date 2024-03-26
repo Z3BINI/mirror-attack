@@ -1,0 +1,11 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://c7uayjepbooid"]
+
+[ext_resource type="FontFile" uid="uid://bu3pc5um37s6k" path="res://assets/font/Pixels.ttf" id="1_0jg8o"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_0jg8o")
+font_color = Color(0.65098, 0.466667, 0.458824, 1)
+shadow_size = 7
+shadow_color = Color(0.145098, 0.0745098, 0.101961, 0.705882)
+shadow_offset = Vector2(0, 0)
