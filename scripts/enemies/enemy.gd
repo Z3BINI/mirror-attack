@@ -29,8 +29,7 @@ func _on_player_detector_body_exited(_body):
 	player_in_range = false
 	
 func knock_back(dir):
-	velocity = Vector2.ZERO
-	velocity = ((-dir).normalized()) * KNOCK_BACK_STRENGTH  # his direction minus my direction!
+	velocity = ((global_position - dir).normalized() * KNOCK_BACK_STRENGTH)
 	
 func animation_manager():
 	sprite.flip_h = (velocity.x < 0) 
