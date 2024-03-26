@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bl4wfwlb1kwnb"]
+[gd_scene load_steps=14 format=3 uid="uid://bl4wfwlb1kwnb"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0p8j5"]
 [ext_resource type="Texture2D" uid="uid://bn226vstmrwa0" path="res://assets/dungeonSprites_ v1.5/mHero_.png" id="1_sd8bw"]
@@ -90,9 +90,26 @@ tracks/0/keys = {
 "values": [8, 9, 10, 11]
 }
 
+[sub_resource type="Animation" id="Animation_ovibl"]
+resource_name = "die"
+length = 0.40001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [40, 41, 42, 43]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ks0bo"]
 _data = {
 "RESET": SubResource("Animation_0u04a"),
+"die": SubResource("Animation_ovibl"),
 "idle": SubResource("Animation_7lbox"),
 "running": SubResource("Animation_vlhl0"),
 "took_dmg": SubResource("Animation_ijymj"),
