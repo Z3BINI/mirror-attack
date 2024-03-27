@@ -18,15 +18,15 @@ NEXT_LEVEL = ExtResource("2_4i3su")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_ieoha")]
-position = Vector2(-86, -2)
+position = Vector2(-58, 6)
 PLAYER = NodePath("../../Player")
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_ieoha")]
-position = Vector2(55, -32)
+position = Vector2(76, -14)
 PLAYER = NodePath("../../Player")
 
 [node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_ieoha")]
-position = Vector2(52, 50)
+position = Vector2(76, 49)
 PLAYER = NodePath("../../Player")
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("3_t62ym")]
