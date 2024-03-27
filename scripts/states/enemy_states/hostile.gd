@@ -4,6 +4,10 @@ class_name  Hostile
 @export var CHASE_SPEED : float = 75
 @export var SHOOT_COOLDOWN : float = 4
 
+@onready var vanish_sfx = preload("res://assets/sound/sfx/enemies/vanish.wav")
+@onready var basic_sfx = preload("res://assets/sound/sfx/enemies/basic_cast.wav")
+@onready var mega_sfx = preload("res://assets/sound/sfx/enemies/4dir_cast.wav")
+
 var has_shot : bool = false
 var cooldown : float = 0
 var angle : float = 0
@@ -20,6 +24,7 @@ func update(delta):
 		reset_shot(delta)
 
 func physics_update(delta):
+	if self_body.dead: has_shot = true
 	var player_dir : Vector2 = (self_body.PLAYER.global_position - self_body.global_position).normalized()
 	var distance_to_player : float = (self_body.PLAYER.global_position - self_body.global_position).length()
 	
@@ -36,6 +41,7 @@ func physics_update(delta):
 	else:
 		if self_body.ENEMY_TYPE != "BOSS":
 			if has_shot == false:
+				AudioManager.play_sfx(vanish_sfx, self_body, 5)
 				vanish_attack(self_body.PLAYER.global_position)
 				has_shot = true
 			
@@ -53,6 +59,7 @@ func boss_mechanics(delta, player_dir, player_pos):
 				mega_shoot()
 			2:
 				vanish_attack(player_pos)
+				AudioManager.play_sfx(vanish_sfx, self_body, 5)
 				
 		has_shot = true
 		
@@ -68,9 +75,11 @@ func shoot(player_dir):
 	
 	projectile.direction = player_dir
 	projectile.position = self_body.global_position
-	add_child(projectile)
+	get_tree().get_first_node_in_group("projectiles").add_child(projectile)
+	AudioManager.play_sfx(basic_sfx, self_body, -5)
 
 func mega_shoot():
+	AudioManager.play_sfx(mega_sfx, self_body, 0)
 	shoot(Vector2.UP)
 	shoot(Vector2.DOWN)	
 	shoot(Vector2.LEFT)
