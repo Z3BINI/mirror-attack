@@ -44,7 +44,7 @@ func knock_back(dir):
 	knocked = false
 	
 func animation_manager():
-	sprite.flip_h = (velocity.x < 0) 
+	sprite.flip_h = (velocity.x <= 0) 
 		
 	if took_dmg:
 			animation_player.play("took_dmg")
