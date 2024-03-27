@@ -4,6 +4,8 @@ extends RigidBody2D
 @export var MAX_BOUNCE : int = 3
 @export var MAX_EXISTANCE_TIME : int = 3
 
+@onready var richoshit_sfx = preload("res://assets/sound/sfx/player/ricoshit.mp3")
+
 var direction : Vector2
 var bounce_counter : int = 0
 var damage_box : Area2D
@@ -24,8 +26,10 @@ func _physics_process(delta):
 		destroy()
 
 func _on_body_entered(body):
+	if body.is_in_group("enemy") and body.dead: return
 	bounce_counter += 1
 	if body.name == "ReflectDetect":
+		AudioManager.play_sfx(richoshit_sfx, self,0 )
 		modulate = Color(0, 0, 1, 1)
 		damage_box.is_hot = true
 	
