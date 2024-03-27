@@ -30,6 +30,7 @@ func _ready():
 	
 
 func _process(delta):
+	print(PlayerStats.hp)
 	if !dead:
 		input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		
@@ -41,6 +42,9 @@ func _process(delta):
 			dash()
 			set_exhausted()
 		
+		if PlayerStats.hp > HP:
+			PlayerStats.hp = HP
+			
 		animation_manager()
 		stamina_manager(delta)
 	
