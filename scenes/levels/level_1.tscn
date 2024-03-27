@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ctwatex284873"]
+[gd_scene load_steps=9 format=3 uid="uid://ctwatex284873"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_ewanf"]
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="1_k84es"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="2_tpgr6"]
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="3_10me6"]
 [ext_resource type="LabelSettings" uid="uid://c7uayjepbooid" path="res://assets/font/label_sets.tres" id="5_na7mo"]
+[ext_resource type="PackedScene" uid="uid://bxel633n2yjm5" path="res://scenes/UI/ui.tscn" id="7_6c0o6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q3eo"]
 size = Vector2(31, 30)
@@ -99,3 +100,5 @@ This room is on the house
 goodluck!"
 label_settings = ExtResource("5_na7mo")
 horizontal_alignment = 1
+
+[node name="UI" parent="." instance=ExtResource("7_6c0o6")]

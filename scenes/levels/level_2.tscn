@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bvo2t8eja5e38"]
+[gd_scene load_steps=11 format=3 uid="uid://bvo2t8eja5e38"]
 
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="1_0fxxu"]
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_m72sg"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="2_kl4iw"]
 [ext_resource type="PackedScene" uid="uid://beyaouhyxj7kd" path="res://scenes/levels/level_3.tscn" id="2_lmbxt"]
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="3_fgfkb"]
+[ext_resource type="PackedScene" uid="uid://bxel633n2yjm5" path="res://scenes/UI/ui.tscn" id="3_jbrfj"]
 [ext_resource type="LabelSettings" uid="uid://c7uayjepbooid" path="res://assets/font/label_sets.tres" id="6_dxik8"]
+[ext_resource type="PackedScene" uid="uid://2p4xpfa5k6ar" path="res://scenes/items/health_pot.tscn" id="8_7pv8a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp4tk"]
 size = Vector2(20, 30)
@@ -14,6 +16,8 @@ size = Vector2(20, 30)
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_m72sg")
 NEXT_LEVEL = ExtResource("2_lmbxt")
+
+[node name="UI" parent="." instance=ExtResource("3_jbrfj")]
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -46,3 +50,8 @@ offset_bottom = 11.0
 text = "Don't be scared...
 you have a mirror!"
 label_settings = ExtResource("6_dxik8")
+
+[node name="Items" type="Node" parent="."]
+
+[node name="HealthPot" parent="Items" instance=ExtResource("8_7pv8a")]
+position = Vector2(128, 45)

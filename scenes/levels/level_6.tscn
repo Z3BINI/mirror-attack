@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://7gt6a3nn1rf3"]
+[gd_scene load_steps=10 format=3 uid="uid://7gt6a3nn1rf3"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_o7y2i"]
 [ext_resource type="PackedScene" uid="uid://qohim7ww1ql1" path="res://scenes/levels/level_7.tscn" id="2_cb5t3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="3_qa1s7"]
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="4_nrhsx"]
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="5_8m62n"]
+[ext_resource type="PackedScene" uid="uid://bxel633n2yjm5" path="res://scenes/UI/ui.tscn" id="8_3154t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp4tk"]
 size = Vector2(32, 29)
@@ -44,3 +45,5 @@ position = Vector2(0, 39.5)
 shape = SubResource("RectangleShape2D_sp4tk")
 
 [node name="Tutorial" type="Node" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("8_3154t")]
