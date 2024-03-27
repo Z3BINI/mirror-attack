@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dniswygbmnos7" path="res://assets/sound/music/Musica_Cripe_ponto_mepe3.mp3" id="2_6opk0"]
 
 [node name="AudioManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_rsgtn")
 
 [node name="MainTheme" type="AudioStreamPlayer" parent="."]

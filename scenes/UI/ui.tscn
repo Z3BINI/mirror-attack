@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxel633n2yjm5"]
+[gd_scene load_steps=11 format=3 uid="uid://bxel633n2yjm5"]
 
 [ext_resource type="Script" path="res://scripts/UI/ui.gd" id="1_hok00"]
 [ext_resource type="PackedScene" uid="uid://egc218mmnhsg" path="res://scenes/UI/life_bar.tscn" id="1_t3x4a"]
 [ext_resource type="PackedScene" uid="uid://hef5o8qxah30" path="res://scenes/UI/nrg_bar.tscn" id="3_l6wce"]
+[ext_resource type="PackedScene" uid="uid://baa5gslxh5mpc" path="res://scenes/UI/menu.tscn" id="4_o1rn7"]
 
 [sub_resource type="Animation" id="Animation_uyii3"]
 length = 0.001
@@ -42,6 +43,21 @@ _data = {
 "took_dmg": SubResource("Animation_3d8ye")
 }
 
+[sub_resource type="Animation" id="Animation_nolgd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("NrgBar:tint_over")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.231373, 0.141176, 0.223529, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_i5ero"]
 resource_name = "stamina_reset"
 length = 0.40001
@@ -59,21 +75,6 @@ tracks/0/keys = {
 "values": [Color(0.231373, 0.141176, 0.223529, 1), Color(0.564706, 0, 0, 1), Color(0.231373, 0.141176, 0.223529, 1), Color(0.564706, 0, 0, 1), Color(0.231373, 0.141176, 0.223529, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_nolgd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("NrgBar:tint_over")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.231373, 0.141176, 0.223529, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gku4f"]
 _data = {
 "RESET": SubResource("Animation_nolgd"),
@@ -81,6 +82,7 @@ _data = {
 }
 
 [node name="UI" type="CanvasLayer" groups=["ui"]]
+process_mode = 3
 script = ExtResource("1_hok00")
 
 [node name="LifeBar" parent="." instance=ExtResource("1_t3x4a")]
@@ -120,3 +122,5 @@ libraries = {
 libraries = {
 "": SubResource("AnimationLibrary_gku4f")
 }
+
+[node name="Menu" parent="." instance=ExtResource("4_o1rn7")]
