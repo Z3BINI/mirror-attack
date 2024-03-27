@@ -20,11 +20,11 @@ NEXT_LEVEL = ExtResource("2_21pwa")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_tkyvq")]
-position = Vector2(99, -40)
+position = Vector2(102, -31)
 PLAYER = NodePath("../../Player")
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_tkyvq")]
-position = Vector2(102, 46)
+position = Vector2(103, 38)
 PLAYER = NodePath("../../Player")
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_rht4i")]
