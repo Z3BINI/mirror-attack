@@ -25,7 +25,7 @@ func physics_update(delta):
 	
 	self_body.velocity = self_body.velocity.move_toward(player_dir * CHASE_SPEED, 2)
 	
-	if distance_to_player <= 65:
+	if distance_to_player <= 65 and !self_body.knocked:
 		circle_player(self_body.PLAYER.global_position, player_dir, delta)
 			
 	if self_body.ENEMY_TYPE != "TYPE3" and self_body.ENEMY_TYPE != "BOSS":

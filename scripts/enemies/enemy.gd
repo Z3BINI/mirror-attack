@@ -12,6 +12,7 @@ var took_dmg : bool = false
 var animation_player : AnimationPlayer
 var dead : bool = false
 var vanish_immunity : bool = false
+var knocked : bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,7 +34,11 @@ func _on_player_detector_body_exited(_body):
 	player_in_range = false
 	
 func knock_back(dir):
+	knocked = true
+	velocity = Vector2.ZERO
 	velocity = ((global_position - dir).normalized() * KNOCK_BACK_STRENGTH)
+	await get_tree().create_timer(1).timeout
+	knocked = false
 	
 func animation_manager():
 	sprite.flip_h = (velocity.x < 0) 
