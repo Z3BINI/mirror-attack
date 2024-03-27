@@ -134,6 +134,7 @@ turbulence_influence_max = 1.0
 turbulence_initial_displacement_max = 100.0
 
 [node name="Boss" type="CharacterBody2D" node_paths=PackedStringArray("vanish_effect") groups=["enemy"]]
+z_index = 5
 collision_layer = 2
 collision_mask = 4
 motion_mode = 1
