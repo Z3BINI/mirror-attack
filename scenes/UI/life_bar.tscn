@@ -6,6 +6,7 @@
 [node name="LifeBar" type="TextureProgressBar"]
 offset_right = 15.0
 offset_bottom = 65.0
+pivot_offset = Vector2(7, 36)
 value = 10.0
 fill_mode = 3
 nine_patch_stretch = true

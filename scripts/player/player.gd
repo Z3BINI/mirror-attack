@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var DASH_COST : int = 2
 @export var MAX_STAMINA : float = 4
 @export var HP : float = 10
+@export var UI : CanvasLayer
 
 var current_speed : float
 var current_stamina : float
@@ -18,6 +19,7 @@ var took_dmg : bool = false
 var dead : bool = false
 
 func _ready():
+	UI = get_tree().get_first_node_in_group("ui")
 	animation_player = $AnimationPlayer
 	current_speed = MAX_WALK_SPEED
 	current_stamina = MAX_STAMINA
@@ -86,8 +88,11 @@ func animation_manager():
 	if dead: return
 	if velocity.x != 0: $PlayerSpriteSheet.flip_h = (velocity.x < 0) 
 	
+	UI.stamina_exhausted(fatigued)
+		
 	if took_dmg:
 			animation_player.play("took_dmg")
+			UI.took_dmg()
 			await animation_player.animation_finished
 			took_dmg = false
 	
@@ -100,6 +105,10 @@ func animation_manager():
 func die():
 	if !dead:
 		dead = true
+		UI.took_dmg()
+		UI.stamina_exhausted(false)
+		animation_player.play("took_dmg")
+		await animation_player.animation_finished
 		$HandPos.queue_free()
 		animation_player.play("die")
 	
