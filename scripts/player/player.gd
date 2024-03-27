@@ -10,6 +10,13 @@ extends CharacterBody2D
 @export var HP : float = 10
 @export var UI : CanvasLayer
 
+@onready var dash_sfx = preload("res://assets/sound/sfx/player/dash.mp3")
+@onready var heal_sfx = preload("res://assets/sound/sfx/player/heal.wav")
+@onready var hit_sfx = [ preload("res://assets/sound/sfx/player/player_hit1.mp3"),
+						preload("res://assets/sound/sfx/player/player_hit2.mp3"),
+						preload("res://assets/sound/sfx/player/player_hit3.mp3")
+						]
+
 var current_speed : float
 var current_stamina : float
 var input_direction : Vector2
@@ -17,6 +24,7 @@ var fatigued : bool = false
 var animation_player : AnimationPlayer
 var took_dmg : bool = false
 var dead : bool = false
+
 
 func _ready():
 	UI = get_tree().get_first_node_in_group("ui")
@@ -43,7 +51,7 @@ func _process(delta):
 		
 		if (Input.is_action_just_pressed("dash") && !fatigued):
 			dash()
-			set_exhausted()
+			current_stamina -= DASH_COST
 		
 		if PlayerStats.hp > HP:
 			PlayerStats.hp = HP
@@ -57,10 +65,12 @@ func _physics_process(_delta):
 		move_and_slide()
 	
 func dash():
+	AudioManager.play_sfx(dash_sfx, self, 0)
 	velocity = (get_global_mouse_position() - global_position).normalized() * DASH_STRENGTH
 
 func stamina_manager(delta):
 	PlayerStats.stamina = current_stamina
+	if current_stamina <= 0: set_exhausted()
 	if current_speed == MAX_RUN_SPEED and velocity != Vector2.ZERO:
 		current_stamina -= delta
 		if current_stamina <= 0: set_exhausted()
@@ -79,9 +89,12 @@ func set_replenished():
 	fatigued = false
 	
 func knock_back(dir):
+	var random_hit_pick = hit_sfx.pick_random()
+	AudioManager.play_sfx(random_hit_pick, self, 0)
 	velocity = ((global_position - dir).normalized() * KNOCK_BACK_STRENGTH)
 
 func play_heal():
+	AudioManager.play_sfx(heal_sfx, self, 0)
 	$HealPlay.play("heal")
 
 func animation_manager():
