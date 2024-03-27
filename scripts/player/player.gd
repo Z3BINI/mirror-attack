@@ -105,6 +105,7 @@ func animation_manager():
 func die():
 	if !dead:
 		dead = true
+		PlayerStats.dead = true
 		UI.took_dmg()
 		UI.stamina_exhausted(false)
 		animation_player.play("took_dmg")
