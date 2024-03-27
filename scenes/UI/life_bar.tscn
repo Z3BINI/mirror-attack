@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://egc218mmnhsg"]
+
+[ext_resource type="Texture2D" uid="uid://c0171l4fdlkqa" path="res://assets/life_bar/Progress.png" id="1_8oo1a"]
+[ext_resource type="Texture2D" uid="uid://c8ja2gh1bc2am" path="res://assets/life_bar/Border.png" id="2_3nlkk"]
+
+[node name="LifeBar" type="TextureProgressBar"]
+offset_right = 15.0
+offset_bottom = 65.0
+value = 10.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("1_8oo1a")
+texture_over = ExtResource("2_3nlkk")
+texture_progress = ExtResource("1_8oo1a")
+tint_under = Color(0.219608, 0.360784, 0.4, 0.764706)
+tint_over = Color(0.231373, 0.141176, 0.223529, 1)
+tint_progress = Color(0.760784, 0.14902, 0.0196078, 1)

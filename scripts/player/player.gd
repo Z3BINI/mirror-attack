@@ -21,8 +21,10 @@ func _ready():
 	animation_player = $AnimationPlayer
 	current_speed = MAX_WALK_SPEED
 	current_stamina = MAX_STAMINA
+	PlayerStats.MAX_STAMINA = MAX_STAMINA
 	
 	if !PlayerStats.hp:
+		PlayerStats.MAX_HP = HP
 		PlayerStats.hp = HP
 		$HurtBox.MAX_HP = HP
 	else:
@@ -30,7 +32,6 @@ func _ready():
 	
 
 func _process(delta):
-	print(PlayerStats.hp)
 	if !dead:
 		input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 		
@@ -54,11 +55,11 @@ func _physics_process(_delta):
 		move_and_slide()
 	
 func dash():
-	velocity = input_direction * DASH_STRENGTH
+	velocity = (get_global_mouse_position() - global_position).normalized() * DASH_STRENGTH
 
 func stamina_manager(delta):
 	PlayerStats.stamina = current_stamina
-	if current_speed == MAX_RUN_SPEED:
+	if current_speed == MAX_RUN_SPEED and velocity != Vector2.ZERO:
 		current_stamina -= delta
 		if current_stamina <= 0: set_exhausted()
 	else:

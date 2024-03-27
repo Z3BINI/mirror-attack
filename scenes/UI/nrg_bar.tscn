@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://hef5o8qxah30"]
+
+[ext_resource type="Texture2D" uid="uid://cy1itn82wes0v" path="res://assets/nrg_bar/bg.png" id="1_pxdid"]
+[ext_resource type="Texture2D" uid="uid://b2mkytqojpb3a" path="res://assets/nrg_bar/Border.png" id="2_0lr7y"]
+[ext_resource type="Texture2D" uid="uid://nspky88ow102" path="res://assets/nrg_bar/Progress.png" id="3_s8njy"]
+
+[node name="NrgBar" type="TextureProgressBar"]
+offset_right = 15.0
+offset_bottom = 66.0
+step = 10.0
+value = 100.0
+fill_mode = 3
+nine_patch_stretch = true
+texture_under = ExtResource("1_pxdid")
+texture_over = ExtResource("2_0lr7y")
+texture_progress = ExtResource("3_s8njy")
+tint_under = Color(0.219608, 0.360784, 0.4, 0.764706)
+tint_over = Color(0.231373, 0.141176, 0.223529, 1)
+tint_progress = Color(0, 0.623529, 0, 1)
