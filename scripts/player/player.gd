@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var KNOCK_BACK_STRENGTH : float = 100.0
 @export var DASH_COST : int = 2
 @export var MAX_STAMINA : float = 4
+@export var HP : float = 10
 
 var current_speed : float
 var current_stamina : float
@@ -20,6 +21,13 @@ func _ready():
 	animation_player = $AnimationPlayer
 	current_speed = MAX_WALK_SPEED
 	current_stamina = MAX_STAMINA
+	
+	if !PlayerStats.hp:
+		PlayerStats.hp = HP
+		$HurtBox.MAX_HP = HP
+	else:
+		$HurtBox.MAX_HP = PlayerStats.hp
+	
 
 func _process(delta):
 	if !dead:
@@ -45,6 +53,7 @@ func dash():
 	velocity = input_direction * DASH_STRENGTH
 
 func stamina_manager(delta):
+	PlayerStats.stamina = current_stamina
 	if current_speed == MAX_RUN_SPEED:
 		current_stamina -= delta
 		if current_stamina <= 0: set_exhausted()
@@ -85,5 +94,4 @@ func die():
 		dead = true
 		$HandPos.queue_free()
 		animation_player.play("die")
-		
-		
+	
