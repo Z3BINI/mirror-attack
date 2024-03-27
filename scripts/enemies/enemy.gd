@@ -5,6 +5,8 @@ extends CharacterBody2D
 @export var vanish_effect : GPUParticles2D
 @export var KNOCK_BACK_STRENGTH : float = 175
 @export var MAX_HP : float = 2
+@export var SHOOT_CD : float = 2
+
 
 var player_in_range : bool = false
 var sprite : Sprite2D
@@ -17,6 +19,7 @@ var health_bar : TextureProgressBar
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$StateMachine/Hostile.SHOOT_COOLDOWN = SHOOT_CD
 	sprite = $EnemySpriteSheet
 	animation_player = $AnimationPlayer
 	$HurtBox.MAX_HP = MAX_HP
@@ -48,11 +51,13 @@ func animation_manager():
 		sprite.flip_h = (velocity.x <= 0) 
 		
 	if took_dmg:
-			animation_player.play("took_dmg")
-			await animation_player.animation_finished
-			took_dmg = false
+		animation_player.play("took_dmg")
+		await animation_player.animation_finished
+		took_dmg = false
+		
 			
 	if dead:
+		$HurtBox.monitoring = false
 		velocity = Vector2.ZERO
 		animation_player.play("die")
 		await animation_player.animation_finished
