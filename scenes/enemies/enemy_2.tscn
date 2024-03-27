@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dryr8o4sbpub4"]
+[gd_scene load_steps=18 format=3 uid="uid://dryr8o4sbpub4"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_6721y"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_r6p87"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/states/enemy_states/hostile.gd" id="5_quuhl"]
 [ext_resource type="Texture2D" uid="uid://ovr3kc24ymtf" path="res://assets/dungeonSprites_ v1.5/necromancer_.png" id="6_txjn8"]
 [ext_resource type="PackedScene" uid="uid://fgciukqxweru" path="res://scenes/components/hurt_box.tscn" id="7_j22r5"]
+[ext_resource type="PackedScene" uid="uid://8otcjodgfp8o" path="res://scenes/components/enemy_health.tscn" id="8_33cgy"]
 
 [sub_resource type="Animation" id="Animation_xlsxr"]
 length = 0.001
@@ -21,6 +22,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_nhhvs"]
+resource_name = "die"
+length = 0.40001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySpriteSheet:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35]
 }
 
 [sub_resource type="Animation" id="Animation_qbtqh"]
@@ -74,22 +91,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [24, 25, 26, 27]
-}
-
-[sub_resource type="Animation" id="Animation_nhhvs"]
-resource_name = "die"
-length = 0.40001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("EnemySpriteSheet:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [32, 33, 34, 35]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nx30x"]
@@ -169,6 +170,12 @@ position = Vector2(0, 5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_qor1i")
+
+[node name="EnemyHealth" parent="." instance=ExtResource("8_33cgy")]
+offset_left = -7.0
+offset_top = -14.0
+offset_right = 7.0
+offset_bottom = -11.0
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

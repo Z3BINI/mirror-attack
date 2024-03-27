@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://eor44nhytt4i"]
+[gd_scene load_steps=21 format=3 uid="uid://eor44nhytt4i"]
 
 [ext_resource type="Script" path="res://scripts/enemies/enemy.gd" id="1_6721y"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="2_r6p87"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://scripts/states/enemy_states/hostile.gd" id="5_quuhl"]
 [ext_resource type="Texture2D" uid="uid://b7qmxa4h1poio" path="res://assets/dungeonSprites_ v1.5/slime_.png" id="6_d5ec2"]
 [ext_resource type="PackedScene" uid="uid://fgciukqxweru" path="res://scenes/components/hurt_box.tscn" id="7_j22r5"]
+[ext_resource type="PackedScene" uid="uid://8otcjodgfp8o" path="res://scenes/components/enemy_health.tscn" id="8_4jkp8"]
 
 [sub_resource type="Animation" id="Animation_mm8mi"]
 length = 0.001
@@ -199,6 +200,12 @@ amount = 32
 process_material = SubResource("ParticleProcessMaterial_8bja8")
 lifetime = 0.5
 one_shot = true
+
+[node name="EnemyHealth" parent="." instance=ExtResource("8_4jkp8")]
+offset_left = -7.0
+offset_top = -10.0
+offset_right = 7.0
+offset_bottom = -7.0
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_player_detector_body_exited"]

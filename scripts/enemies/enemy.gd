@@ -13,16 +13,19 @@ var animation_player : AnimationPlayer
 var dead : bool = false
 var vanish_immunity : bool = false
 var knocked : bool = false
+var health_bar : TextureProgressBar 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	sprite = $EnemySpriteSheet
 	animation_player = $AnimationPlayer
 	$HurtBox.MAX_HP = MAX_HP
+	health_bar = $EnemyHealth
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	animation_manager()
+	health_bar.value = $HurtBox.MAX_HP * 100 / MAX_HP
 
 func _physics_process(_delta):
 	move_and_slide()

@@ -81,10 +81,12 @@ func vanish_attack(player_pos):
 	self_body.vanish_effect.emitting = true
 	self_body.vanish_immunity = true
 	self_body.sprite.visible = false
+	self_body.health_bar.visible = false
 	await self_body.vanish_effect.finished
 	
 	self_body.global_position = player_pos
 	self_body.sprite.visible = true
+	self_body.health_bar.visible = true
 	shoot((self_body.PLAYER.global_position - self_body.global_position).normalized())
 	self_body.vanish_immunity = false
 	
