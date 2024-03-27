@@ -1,0 +1,197 @@
+[gd_scene load_steps=6 format=3 uid="uid://baa5gslxh5mpc"]
+
+[ext_resource type="Script" path="res://scripts/UI/menu.gd" id="1_616gq"]
+[ext_resource type="FontFile" uid="uid://bu3pc5um37s6k" path="res://assets/font/Pixels.ttf" id="1_o1vr0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ighjb"]
+bg_color = Color(0.192157, 0.113725, 0.184314, 0.756863)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.431373, 0.290196, 0.282353, 1)
+border_blend = true
+shadow_color = Color(0, 0, 0, 0.34902)
+shadow_size = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_cv0na"]
+line_spacing = 0.0
+font = ExtResource("1_o1vr0")
+font_size = 32
+font_color = Color(0.913725, 0.835294, 0.831373, 1)
+shadow_size = 7
+shadow_color = Color(0.145098, 0.0745098, 0.101961, 0.705882)
+shadow_offset = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qpq14"]
+line_spacing = 0.0
+font = ExtResource("1_o1vr0")
+font_size = 32
+font_color = Color(0.964706, 0.933333, 0.933333, 1)
+shadow_size = 0
+
+[node name="Menu" type="Control"]
+process_mode = 2
+z_index = 50
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_616gq")
+
+[node name="Pause" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pannel" type="PanelContainer" parent="Pause"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -70.0
+offset_right = 80.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ighjb")
+
+[node name="Label" type="Label" parent="Pause/Pannel"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Pause"
+label_settings = SubResource("LabelSettings_cv0na")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="Pause"]
+layout_mode = 2
+offset_left = -48.0
+offset_top = -21.0
+offset_right = 4.0
+offset_bottom = 3.0
+size_flags_horizontal = 0
+text = "Music:"
+label_settings = SubResource("LabelSettings_qpq14")
+
+[node name="MusicToggle" type="CheckButton" parent="Pause"]
+layout_mode = 2
+offset_left = 8.0
+offset_top = -16.0
+offset_right = 52.0
+offset_bottom = 8.0
+size_flags_horizontal = 8
+size_flags_vertical = 4
+button_pressed = true
+
+[node name="Return" type="Button" parent="Pause"]
+layout_mode = 2
+offset_left = -15.0
+offset_top = 7.0
+offset_right = 18.0
+offset_bottom = 27.0
+theme_override_fonts/font = ExtResource("1_o1vr0")
+theme_override_font_sizes/font_size = 16
+text = "Return"
+flat = true
+
+[node name="Quit" type="Button" parent="Pause"]
+layout_mode = 2
+offset_left = -15.0
+offset_top = 30.0
+offset_right = 18.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("1_o1vr0")
+theme_override_font_sizes/font_size = 8
+text = "Quit"
+flat = true
+
+[node name="Dead" type="Control" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Pannel" type="PanelContainer" parent="Dead"]
+layout_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -70.0
+offset_right = 80.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ighjb")
+
+[node name="Label" type="Label" parent="Dead/Pannel"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "you died!"
+label_settings = SubResource("LabelSettings_cv0na")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Retry" type="Button" parent="Dead"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -45.0
+offset_right = 5.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_o1vr0")
+theme_override_font_sizes/font_size = 32
+text = "retry"
+flat = true
+
+[node name="Restart" type="Button" parent="Dead"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = -21.0
+offset_right = 5.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_o1vr0")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+flat = true
+
+[node name="Quit" type="Button" parent="Dead"]
+layout_mode = 2
+offset_left = -15.0
+offset_top = 27.0
+offset_right = 18.0
+offset_bottom = 47.0
+theme_override_fonts/font = ExtResource("1_o1vr0")
+theme_override_font_sizes/font_size = 8
+text = "Quit"
+flat = true
+
+[connection signal="toggled" from="Pause/MusicToggle" to="." method="_on_music_toggle_toggled"]
+[connection signal="pressed" from="Pause/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="Pause/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Dead/Retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Dead/Restart" to="." method="restart_game"]
+[connection signal="pressed" from="Dead/Quit" to="." method="_on_quit_pressed"]
