@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://qohim7ww1ql1"]
+[gd_scene load_steps=12 format=3 uid="uid://qohim7ww1ql1"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_2jxjp"]
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="2_0wdee"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://eor44nhytt4i" path="res://scenes/enemies/enemy_3.tscn" id="4_5xdrv"]
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="4_brpgg"]
 [ext_resource type="PackedScene" uid="uid://bxel633n2yjm5" path="res://scenes/UI/ui.tscn" id="9_1rv21"]
+[ext_resource type="PackedScene" uid="uid://2p4xpfa5k6ar" path="res://scenes/items/health_pot.tscn" id="10_1s382"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp4tk"]
 size = Vector2(25, 29)
@@ -22,26 +23,38 @@ NEXT_LEVEL = ExtResource("2_21pwa")
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_tkyvq")]
 position = Vector2(102, -31)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 0.5
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_tkyvq")]
 position = Vector2(103, 38)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 0.5
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_rht4i")]
 position = Vector2(-8, 49)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 1.5
 
 [node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_rht4i")]
 position = Vector2(-7, -37)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 1.5
 
 [node name="Enemy5" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_5xdrv")]
 position = Vector2(-105, -38)
 PLAYER = NodePath("../../Player")
+MAX_HP = 4.0
+SHOOT_CD = 3.0
 
 [node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_5xdrv")]
 position = Vector2(-100, 59)
 PLAYER = NodePath("../../Player")
+MAX_HP = 4.0
+SHOOT_CD = 3.0
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("2_0wdee")]
 layer_0/tile_data = PackedInt32Array(-11, 524288, 4, 65525, 524288, 5, 131062, 65536, 9, -65546, 65536, 9, -65525, 458752, 7, 327670, 327680, 1073741830, -327671, 327680, 6, -262154, 262144, 6, -327687, 0, 9, -327683, 0, 9, -393215, 0, 9, -393211, 0, 9, 65545, 65536, 268435465, -131063, 65536, 268435465, -131078, 524288, 6, 262140, 458752, 1342177287)
@@ -60,3 +73,23 @@ shape = SubResource("RectangleShape2D_sp4tk")
 [node name="Tutorial" type="Node" parent="."]
 
 [node name="UI" parent="." instance=ExtResource("9_1rv21")]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="HealthPot" parent="Items" instance=ExtResource("10_1s382")]
+position = Vector2(-136, 69)
+HEAL_VALUE = 4.0
+
+[node name="HealthPot4" parent="Items" instance=ExtResource("10_1s382")]
+position = Vector2(-139, -68)
+HEAL_VALUE = 4.0
+
+[node name="HealthPot2" parent="Items" instance=ExtResource("10_1s382")]
+position = Vector2(135, -67)
+HEAL_VALUE = 4.0
+
+[node name="HealthPot3" parent="Items" instance=ExtResource("10_1s382")]
+position = Vector2(132, 69)
+HEAL_VALUE = 4.0
+
+[node name="Projectiles" type="Node" parent="." groups=["projectiles"]]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://beyaouhyxj7kd"]
+[gd_scene load_steps=10 format=3 uid="uid://beyaouhyxj7kd"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_b1tmv"]
 [ext_resource type="PackedScene" uid="uid://cw5vulnbkcj5t" path="res://scenes/levels/level_4.tscn" id="2_2jpfi"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="3_tpwgl"]
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="4_h855v"]
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="5_4xg0k"]
+[ext_resource type="PackedScene" uid="uid://2p4xpfa5k6ar" path="res://scenes/items/health_pot.tscn" id="8_he1y6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp4tk"]
 size = Vector2(32, 29)
@@ -49,3 +50,11 @@ position = Vector2(0, 39.5)
 shape = SubResource("RectangleShape2D_sp4tk")
 
 [node name="Tutorial" type="Node" parent="."]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="HealthPot" parent="Items" instance=ExtResource("8_he1y6")]
+position = Vector2(0, -45)
+HEAL_VALUE = 2.0
+
+[node name="Projectiles" type="Node" parent="." groups=["projectiles"]]

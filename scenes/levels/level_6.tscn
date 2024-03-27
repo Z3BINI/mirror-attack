@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7gt6a3nn1rf3"]
+[gd_scene load_steps=11 format=3 uid="uid://7gt6a3nn1rf3"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_o7y2i"]
 [ext_resource type="PackedScene" uid="uid://qohim7ww1ql1" path="res://scenes/levels/level_7.tscn" id="2_cb5t3"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="4_nrhsx"]
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="5_8m62n"]
 [ext_resource type="PackedScene" uid="uid://bxel633n2yjm5" path="res://scenes/UI/ui.tscn" id="8_3154t"]
+[ext_resource type="PackedScene" uid="uid://2p4xpfa5k6ar" path="res://scenes/items/health_pot.tscn" id="9_q2jv3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp4tk"]
 size = Vector2(32, 29)
@@ -19,16 +20,20 @@ NEXT_LEVEL = ExtResource("2_cb5t3")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_jutv5")]
-position = Vector2(59, 37)
+position = Vector2(132, -40)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_jutv5")]
-position = Vector2(-71, 42)
+position = Vector2(-130, -30)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
 
 [node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_hxims")]
-position = Vector2(-1, -30)
+position = Vector2(1, 4)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 3.0
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("3_qa1s7")]
 layer_0/tile_data = PackedInt32Array(-327682, 262144, 7, -393215, 262144, 7, -327683, 0, 9, -393214, 0, 9, 720895, 589824, 5, 655360, 327680, 1342177286, -262154, 262144, 6, -327671, 262144, 268435462, 131066, 458752, 7, 65540, 524288, 6, 327670, 589824, 4, 458751, 524288, 6)
@@ -47,3 +52,13 @@ shape = SubResource("RectangleShape2D_sp4tk")
 [node name="Tutorial" type="Node" parent="."]
 
 [node name="UI" parent="." instance=ExtResource("8_3154t")]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="HealthPot" parent="Items" instance=ExtResource("9_q2jv3")]
+position = Vector2(-121, -59)
+
+[node name="HealthPot2" parent="Items" instance=ExtResource("9_q2jv3")]
+position = Vector2(102, -57)
+
+[node name="Projectiles" type="Node" parent="." groups=["projectiles"]]

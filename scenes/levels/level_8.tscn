@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://brtywi62wrrqp"]
+[gd_scene load_steps=13 format=3 uid="uid://brtywi62wrrqp"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_q5li3"]
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="3_gjyg7"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="5_rybfy"]
 [ext_resource type="PackedScene" uid="uid://eor44nhytt4i" path="res://scenes/enemies/enemy_3.tscn" id="6_in5tt"]
 [ext_resource type="PackedScene" uid="uid://bxel633n2yjm5" path="res://scenes/UI/ui.tscn" id="9_kwt6j"]
+[ext_resource type="LabelSettings" uid="uid://c7uayjepbooid" path="res://assets/font/label_sets.tres" id="9_o0w5a"]
+[ext_resource type="PackedScene" uid="uid://2p4xpfa5k6ar" path="res://scenes/items/health_pot.tscn" id="10_xc12b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q3eo"]
 size = Vector2(31, 30)
@@ -19,67 +21,115 @@ script = ExtResource("1_q5li3")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Boss" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_ymi84")]
-position = Vector2(63, 55)
+position = Vector2(23, 53)
 PLAYER = NodePath("../../Player")
-MAX_HP = 20.0
+MAX_HP = 25.0
+SHOOT_CD = 1.0
 
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_xddhf")]
-position = Vector2(-115, 156)
+position = Vector2(-59, 154)
 PLAYER = NodePath("../../Player")
-MAX_HP = 10.0
+MAX_HP = 15.0
+SHOOT_CD = 0.25
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_xddhf")]
-position = Vector2(142, 154)
+position = Vector2(103, 167)
 PLAYER = NodePath("../../Player")
-MAX_HP = 10.0
+MAX_HP = 15.0
+SHOOT_CD = 0.25
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_k4ny8")]
 position = Vector2(-184, 902)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 1.5
 
 [node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_k4ny8")]
 position = Vector2(247, 911)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 1.5
 
 [node name="Enemy5" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_k4ny8")]
 position = Vector2(307, 735)
 PLAYER = NodePath("../../Player")
+MAX_HP = 8.0
+SHOOT_CD = 1.0
 
 [node name="Enemy6" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_k4ny8")]
-position = Vector2(123, 576)
+position = Vector2(234, 575)
 PLAYER = NodePath("../../Player")
+MAX_HP = 10.0
+SHOOT_CD = 1.0
 
 [node name="Enemy7" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_k4ny8")]
-position = Vector2(-217, 574)
+position = Vector2(-222, 571)
 PLAYER = NodePath("../../Player")
+MAX_HP = 10.0
+SHOOT_CD = 1.0
 
 [node name="Enemy8" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("5_k4ny8")]
 position = Vector2(-276, 734)
 PLAYER = NodePath("../../Player")
+MAX_HP = 8.0
+SHOOT_CD = 1.0
 
 [node name="Enemy9" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
 position = Vector2(-138, 745)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
 
 [node name="Enemy10" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
 position = Vector2(0, 835)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 3.0
 
 [node name="Enemy11" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
 position = Vector2(178, 742)
 PLAYER = NodePath("../../Player")
-
-[node name="Enemy12" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_xddhf")]
-position = Vector2(0, 608)
-PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
 
 [node name="Enemy13" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_xddhf")]
 position = Vector2(0, 722)
 PLAYER = NodePath("../../Player")
+MAX_HP = 10.0
+SHOOT_CD = 1.0
 
 [node name="Enemy14" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_xddhf")]
 position = Vector2(0, 872)
 PLAYER = NodePath("../../Player")
+MAX_HP = 4.0
+SHOOT_CD = 0.5
+
+[node name="Enemy12" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
+position = Vector2(10, 622)
+PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+
+[node name="Enemy15" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
+position = Vector2(-299, 883)
+PLAYER = NodePath("../../Player")
+MAX_HP = 8.0
+SHOOT_CD = 2.5
+
+[node name="Enemy17" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
+position = Vector2(317, 607)
+PLAYER = NodePath("../../Player")
+MAX_HP = 8.0
+SHOOT_CD = 2.5
+
+[node name="Enemy16" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
+position = Vector2(317, 891)
+PLAYER = NodePath("../../Player")
+MAX_HP = 8.0
+SHOOT_CD = 2.5
+
+[node name="Enemy18" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
+position = Vector2(-278, 585)
+PLAYER = NodePath("../../Player")
+MAX_HP = 8.0
+SHOOT_CD = 2.5
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("3_gjyg7")]
 layer_0/tile_data = PackedInt32Array(-131071, 262144, 7, -65538, 262144, 7, -13, 262144, 6, -65522, 327680, 6, -65539, 0, 9, -131070, 0, 9, 393226, 589824, 5, 983054, 458752, 7, 917511, 524288, 6, 524281, 589824, 4, 851982, 65536, 268435465, 1048563, 262144, 1610612742, 2228202, 262144, 6, 2162711, 262144, 268435462, 3866647, 262144, 805306374, 3932138, 262144, 536870918, 4521986, 327680, 1342177286, 4390911, 458752, 1610612743, 3997698, 524288, 1342177286, 4587519, 589824, 5, 4063234, 589824, 5, 2293757, 196608, 9, 2228228, 196608, 9, 2031619, 196608, 9, 2097150, 196608, 9, 1835011, 196608, 9, 1900542, 196608, 9, 1638403, 196608, 9, 1703934, 196608, 9, 1441795, 196608, 9, 1507326, 196608, 9, 1245187, 196608, 9, 1310718, 196608, 9, 1048579, 196608, 9, 1114110, 196608, 9, 1245182, 65536, 9, 1179646, 65536, 9, 1441790, 65536, 9, 1376254, 65536, 9, 1638398, 65536, 9, 1572862, 65536, 9, 1835006, 65536, 9, 1769470, 65536, 9, 2031614, 65536, 9, 1966078, 65536, 9, 1966083, 65536, 268435465, 1900547, 65536, 268435465, 1769475, 65536, 268435465, 1703939, 65536, 268435465, 1572867, 65536, 268435465, 1507331, 65536, 268435465, 1376259, 65536, 268435465, 1310723, 65536, 268435465, 1179651, 65536, 268435465, 1114115, 65536, 268435465, 2162685, 0, 9, 2097156, 0, 9, 2162684, 262144, 7, 2097157, 262144, 7, 2162681, 262144, 7, 2097160, 262144, 7, 2097163, 262144, 7, 2097166, 262144, 7, 2097169, 262144, 7, 2097172, 262144, 7, 2097175, 262144, 7, 2162678, 262144, 7, 2162675, 262144, 7, 2162672, 262144, 7, 2162669, 262144, 7, 2162666, 262144, 7, -65540, 262144, 7, -131069, 262144, 7, -131067, 262144, 7, -131065, 262144, 7, -131063, 262144, 7, -131061, 262144, 7, -131059, 262144, 7, -65542, 262144, 7, -65544, 262144, 7, -65546, 262144, 7, -65548, 262144, 7, -65549, 0, 9, -65547, 0, 9, -65545, 0, 9, -65543, 0, 9, -65541, 0, 9, -131068, 0, 9, -131066, 0, 9, -131064, 0, 9, -131062, 0, 9, -131060, 0, 9, -131058, 0, 9, 131059, 65536, 9, 262131, 65536, 9, 393203, 65536, 9, 524275, 65536, 9, 655347, 65536, 9, 786419, 65536, 9, 917491, 65536, 9, 65550, 65536, 268435465, 196622, 65536, 268435465, 327694, 65536, 268435465, 458766, 65536, 268435465, 589838, 65536, 268435465, 720910, 65536, 268435465, 589816, 458752, 805306375, 327691, 524288, 6)
@@ -97,4 +147,45 @@ shape = SubResource("RectangleShape2D_7q3eo")
 
 [node name="Tutorial" type="Node" parent="."]
 
+[node name="Label" type="Label" parent="Tutorial"]
+offset_left = -22.0
+offset_top = 329.0
+offset_right = 55.0
+offset_bottom = 377.0
+text = "This is it pretty
+boy
+
+Make me proud"
+label_settings = ExtResource("9_o0w5a")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="UI" parent="." instance=ExtResource("9_kwt6j")]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="HealthPot" parent="Items" instance=ExtResource("10_xc12b")]
+position = Vector2(-313, 926)
+HEAL_VALUE = 5.0
+
+[node name="HealthPot2" parent="Items" instance=ExtResource("10_xc12b")]
+position = Vector2(342, 926)
+HEAL_VALUE = 5.0
+
+[node name="HealthPot3" parent="Items" instance=ExtResource("10_xc12b")]
+position = Vector2(339, 581)
+HEAL_VALUE = 5.0
+
+[node name="HealthPot4" parent="Items" instance=ExtResource("10_xc12b")]
+position = Vector2(-299, 581)
+HEAL_VALUE = 5.0
+
+[node name="HealthPot5" parent="Items" instance=ExtResource("10_xc12b")]
+position = Vector2(2, 748)
+HEAL_VALUE = 5.0
+
+[node name="HealthPot6" parent="Items" instance=ExtResource("10_xc12b")]
+position = Vector2(16, 362)
+HEAL_VALUE = 100.0
+
+[node name="Projectiles" type="Node" parent="." groups=["projectiles"]]

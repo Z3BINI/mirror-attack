@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cw5vulnbkcj5t"]
+[gd_scene load_steps=11 format=3 uid="uid://cw5vulnbkcj5t"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_pwejg"]
 [ext_resource type="PackedScene" uid="uid://1du512wqwxn1" path="res://scenes/enemies/enemy.tscn" id="2_8vgai"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="4_w5ike"]
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="5_2c7yp"]
 [ext_resource type="PackedScene" uid="uid://bxel633n2yjm5" path="res://scenes/UI/ui.tscn" id="8_2oe4v"]
+[ext_resource type="PackedScene" uid="uid://2p4xpfa5k6ar" path="res://scenes/items/health_pot.tscn" id="9_1k4at"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp4tk"]
 size = Vector2(25, 29)
@@ -21,10 +22,13 @@ NEXT_LEVEL = ExtResource("2_ria8j")
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_8vgai")]
 position = Vector2(73, 0)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 1.0
 
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_j31rk")]
 position = Vector2(-60, -2)
 PLAYER = NodePath("../../Player")
+MAX_HP = 10.0
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("3_wdm5q")]
 layer_0/tile_data = PackedInt32Array(-11, 524288, 4, 65525, 524288, 5, 131062, 65536, 9, -65546, 65536, 9, -262154, 262144, 6, -327671, 327680, 6, 327675, 458752, 7, 196617, 589824, 5, -65518, 327680, 6, 15, 524288, 6, -327685, 131072, 9, -393212, 131072, 9)
@@ -43,3 +47,10 @@ shape = SubResource("RectangleShape2D_sp4tk")
 [node name="Tutorial" type="Node" parent="."]
 
 [node name="UI" parent="." instance=ExtResource("8_2oe4v")]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="HealthPot" parent="Items" instance=ExtResource("9_1k4at")]
+position = Vector2(-84, 62)
+
+[node name="Projectiles" type="Node" parent="." groups=["projectiles"]]

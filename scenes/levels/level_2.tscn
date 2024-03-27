@@ -52,7 +52,29 @@ text = "Don't be scared...
 you have a mirror!"
 label_settings = ExtResource("6_dxik8")
 
+[node name="Label3" type="Label" parent="Tutorial"]
+offset_left = -54.0
+offset_top = 32.0
+offset_right = 23.0
+offset_bottom = 56.0
+text = "Reflected shots 
+won't hurt you"
+label_settings = ExtResource("6_dxik8")
+
+[node name="Label2" type="Label" parent="Tutorial"]
+offset_left = 86.0
+offset_top = 54.0
+offset_right = 163.0
+offset_bottom = 78.0
+text = "Every room will 
+have health pots"
+label_settings = ExtResource("6_dxik8")
+horizontal_alignment = 1
+
 [node name="Items" type="Node" parent="."]
 
 [node name="HealthPot" parent="Items" instance=ExtResource("8_7pv8a")]
-position = Vector2(128, 45)
+position = Vector2(123, 46)
+HEAL_VALUE = 100.0
+
+[node name="Projectiles" type="Node" parent="." groups=["projectiles"]]

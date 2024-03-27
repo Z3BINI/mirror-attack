@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8dtij8tmvjya"]
+[gd_scene load_steps=10 format=3 uid="uid://c8dtij8tmvjya"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_a1n54"]
 [ext_resource type="PackedScene" uid="uid://7gt6a3nn1rf3" path="res://scenes/levels/level_6.tscn" id="2_4i3su"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="4_lkstx"]
 [ext_resource type="PackedScene" uid="uid://bg0bfcampdd1v" path="res://scenes/components/door_check.tscn" id="5_2seaj"]
 [ext_resource type="PackedScene" uid="uid://bxel633n2yjm5" path="res://scenes/UI/ui.tscn" id="7_jbuq7"]
+[ext_resource type="PackedScene" uid="uid://2p4xpfa5k6ar" path="res://scenes/items/health_pot.tscn" id="8_fbnyq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sp4tk"]
 size = Vector2(20, 30)
@@ -20,14 +21,20 @@ NEXT_LEVEL = ExtResource("2_4i3su")
 [node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_ieoha")]
 position = Vector2(-58, 6)
 PLAYER = NodePath("../../Player")
+MAX_HP = 6.0
+SHOOT_CD = 1.5
 
 [node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_ieoha")]
 position = Vector2(76, -14)
 PLAYER = NodePath("../../Player")
+MAX_HP = 10.0
+SHOOT_CD = 1.0
 
 [node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("2_ieoha")]
-position = Vector2(76, 49)
+position = Vector2(35, 59)
 PLAYER = NodePath("../../Player")
+MAX_HP = 8.0
+SHOOT_CD = 1.5
 
 [node name="DungeonTileMap" parent="." instance=ExtResource("3_t62ym")]
 layer_0/tile_data = PackedInt32Array(10, 458752, 5, -65526, 458752, 4, -16, 262144, 6, 65520, 327680, 805306374, -131076, 589824, 5, 131075, 589824, 5, -262138, 589824, 4, -327689, 0, 9, -393208, 0, 9, -393211, 0, 9, -327686, 0, 9, -327683, 0, 9, -393214, 0, 9, -65546, 65536, 9, 131062, 65536, 9, 65522, 524288, 6, -13, 458752, 7)
@@ -46,3 +53,15 @@ shape = SubResource("RectangleShape2D_sp4tk")
 [node name="Tutorial" type="Node" parent="."]
 
 [node name="UI" parent="." instance=ExtResource("7_jbuq7")]
+
+[node name="Items" type="Node" parent="."]
+
+[node name="HealthPot" parent="Items" instance=ExtResource("8_fbnyq")]
+position = Vector2(117, 55)
+HEAL_VALUE = 2.0
+
+[node name="HealthPot2" parent="Items" instance=ExtResource("8_fbnyq")]
+position = Vector2(111, -61)
+HEAL_VALUE = 2.0
+
+[node name="Projectiles" type="Node" parent="." groups=["projectiles"]]

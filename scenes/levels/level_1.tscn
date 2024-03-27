@@ -102,3 +102,5 @@ label_settings = ExtResource("5_na7mo")
 horizontal_alignment = 1
 
 [node name="UI" parent="." instance=ExtResource("7_6c0o6")]
+
+[node name="Projectiles" type="Node" parent="." groups=["projectiles"]]
