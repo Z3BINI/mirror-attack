@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bl4wfwlb1kwnb"]
+[gd_scene load_steps=17 format=3 uid="uid://bl4wfwlb1kwnb"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_0p8j5"]
 [ext_resource type="Texture2D" uid="uid://bn226vstmrwa0" path="res://assets/dungeonSprites_ v1.5/mHero_.png" id="1_sd8bw"]
@@ -123,6 +123,31 @@ height = 10.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t2tti"]
 size = Vector2(6, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ybqx"]
+size = Vector2(11, 16)
+
+[sub_resource type="Animation" id="Animation_etinw"]
+resource_name = "heal"
+length = 0.60001
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerSpriteSheet:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cq5i8"]
+_data = {
+"heal": SubResource("Animation_etinw")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 5
 collision_mask = 4
@@ -162,3 +187,16 @@ shape = SubResource("CapsuleShape2D_aa18v")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_t2tti")
+
+[node name="HealCheck" type="Area2D" parent="."]
+collision_layer = 256
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealCheck"]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_4ybqx")
+
+[node name="HealPlay" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cq5i8")
+}

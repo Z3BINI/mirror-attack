@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://2p4xpfa5k6ar"]
+
+[ext_resource type="Script" path="res://scripts/items/health_pot.gd" id="1_25p8l"]
+[ext_resource type="Texture2D" uid="uid://qedoxsenerh4" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_4_1.png" id="1_d2blc"]
+[ext_resource type="Texture2D" uid="uid://x40c2xk6x21r" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_4_2.png" id="2_hxww4"]
+[ext_resource type="Texture2D" uid="uid://brj820n4aebol" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_4_3.png" id="3_xwpud"]
+[ext_resource type="Texture2D" uid="uid://dr200jcveay0t" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flasks/flasks_4_4.png" id="4_3dkim"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d541i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d2blc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hxww4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_xwpud")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3dkim")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u08po"]
+radius = 4.0
+height = 12.0
+
+[node name="HealthPot" type="Area2D"]
+collision_layer = 0
+collision_mask = 256
+script = ExtResource("1_25p8l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d541i")
+autoplay = "default"
+frame_progress = 0.901458
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_u08po")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

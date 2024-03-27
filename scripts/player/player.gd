@@ -74,6 +74,9 @@ func set_replenished():
 func knock_back(dir):
 	velocity = ((global_position - dir).normalized() * KNOCK_BACK_STRENGTH)
 
+func play_heal():
+	$HealPlay.play("heal")
+
 func animation_manager():
 	if dead: return
 	if velocity.x != 0: $PlayerSpriteSheet.flip_h = (velocity.x < 0) 
