@@ -81,7 +81,11 @@ func shoot(player_dir):
 func mega_shoot():
 	AudioManager.play_sfx(mega_sfx, self_body, 0)
 	shoot(Vector2.UP)
-	shoot(Vector2.DOWN)	
+	shoot(Vector2(-1, 1))
+	shoot(Vector2(-1, -1))
+	shoot(Vector2.DOWN)
+	shoot(Vector2(1, 1))
+	shoot(Vector2(1, -1))
 	shoot(Vector2.LEFT)
 	shoot(Vector2.RIGHT)
 
