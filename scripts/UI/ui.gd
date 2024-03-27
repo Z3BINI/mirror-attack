@@ -7,7 +7,16 @@ extends CanvasLayer
 func _process(delta):
 	$LifeBar.value = PlayerStats.hp * 100 / PlayerStats.MAX_HP
 	$NrgBar.value = PlayerStats.stamina * 100 / PlayerStats.MAX_STAMINA
+	
+	if !PlayerStats.dead && Input.is_action_just_pressed("show_menu"):
+		toggle_pause()
+	
+	if PlayerStats.dead:
+		$Menu.show_dead()
 
+func toggle_pause():
+	get_tree().paused = !get_tree().paused
+	$Menu.toggle_pause()
 
 func took_dmg():
 	hp_animations.play("took_dmg")
