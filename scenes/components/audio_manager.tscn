@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://bk7f8em71ekpc"]
+[gd_scene load_steps=5 format=3 uid="uid://bk7f8em71ekpc"]
 
 [ext_resource type="Script" path="res://scripts/components/audio_manager.gd" id="1_rsgtn"]
 [ext_resource type="AudioStream" uid="uid://dniswygbmnos7" path="res://assets/sound/music/Musica_Cripe_ponto_mepe3.mp3" id="2_6opk0"]
+[ext_resource type="AudioStream" uid="uid://qiborvrbm83u" path="res://assets/sound/music/boss_battle.mp3" id="3_jnk8f"]
+[ext_resource type="AudioStream" uid="uid://dteskpipld8fi" path="res://assets/sound/music/victory_song.mp3" id="4_0kapt"]
 
 [node name="AudioManager" type="Node"]
 process_mode = 3
@@ -12,3 +14,10 @@ stream = ExtResource("2_6opk0")
 volume_db = -17.0
 
 [node name="SFXplayer" type="AudioStreamPlayer" parent="."]
+
+[node name="BossTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jnk8f")
+volume_db = -10.0
+
+[node name="WinTheme" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0kapt")

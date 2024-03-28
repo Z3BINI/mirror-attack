@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://76a4i2ldvqgs"]
+
+[ext_resource type="Texture2D" uid="uid://cdpyqicwpi4tc" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flag/flag_1.png" id="1_a2skd"]
+[ext_resource type="Texture2D" uid="uid://c4nlxv5xogvbt" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flag/flag_2.png" id="2_16lyf"]
+[ext_resource type="Texture2D" uid="uid://cc7eafnfb62jw" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flag/flag_3.png" id="3_dsg03"]
+[ext_resource type="Texture2D" uid="uid://cpep4ul1q5thy" path="res://assets/2D Pixel Dungeon Asset Pack/items and trap_animation/flag/flag_4.png" id="4_xado0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kct4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a2skd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_16lyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dsg03")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xado0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Flag" type="AnimatedSprite2D"]
+position = Vector2(-169, -23)
+sprite_frames = SubResource("SpriteFrames_kct4i")
+autoplay = "default"
+frame_progress = 0.657774

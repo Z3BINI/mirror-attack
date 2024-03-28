@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var KNOCK_BACK_STRENGTH : float = 175
 @export var MAX_HP : float = 2
 @export var SHOOT_CD : float = 2
-
+@export var TRAP_DOOR : StaticBody2D
 
 var player_in_range : bool = false
 var sprite : Sprite2D
@@ -61,6 +61,7 @@ func animation_manager():
 		velocity = Vector2.ZERO
 		animation_player.play("die")
 		await animation_player.animation_finished
+		if TRAP_DOOR: TRAP_DOOR.queue_free()
 		queue_free()
 	
 	if velocity != Vector2.ZERO:

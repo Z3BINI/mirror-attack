@@ -2,7 +2,10 @@ extends Node
 
 @onready var main_theme = $MainTheme
 @onready var sfx_player = $SFXplayer
+@onready var boss_theme = $BossTheme
+@onready var win_theme = $WinTheme
 
+var music : bool = true
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	main_theme.play()

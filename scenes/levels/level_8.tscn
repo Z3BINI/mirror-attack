@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://brtywi62wrrqp"]
+[gd_scene load_steps=16 format=3 uid="uid://brtywi62wrrqp"]
 
 [ext_resource type="Script" path="res://scripts/levels/levels.gd" id="1_q5li3"]
+[ext_resource type="PackedScene" uid="uid://ba1m2yfm7dkn5" path="res://scenes/levels/thank_you_level.tscn" id="2_lyyfb"]
 [ext_resource type="PackedScene" uid="uid://pyqf43y8il2l" path="res://scenes/tile_maps/dungeon_tile_map.tscn" id="3_gjyg7"]
 [ext_resource type="PackedScene" uid="uid://dqr7yo8hfkxy3" path="res://scenes/enemies/boss.tscn" id="3_ymi84"]
 [ext_resource type="PackedScene" uid="uid://bl4wfwlb1kwnb" path="res://scenes/player/player.tscn" id="4_mgt1l"]
@@ -15,16 +16,24 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7q3eo"]
 size = Vector2(31, 30)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_entm5"]
+size = Vector2(110, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u68i"]
+size = Vector2(102, 14)
+
 [node name="Level8" type="Node2D"]
 script = ExtResource("1_q5li3")
+NEXT_LEVEL = ExtResource("2_lyyfb")
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="Boss" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("3_ymi84")]
+[node name="Boss" parent="Enemies" node_paths=PackedStringArray("PLAYER", "TRAP_DOOR") instance=ExtResource("3_ymi84")]
 position = Vector2(23, 53)
 PLAYER = NodePath("../../Player")
 MAX_HP = 25.0
 SHOOT_CD = 1.0
+TRAP_DOOR = NodePath("../../TrapDoor")
 
 [node name="Enemy" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_xddhf")]
 position = Vector2(-59, 154)
@@ -180,3 +189,25 @@ position = Vector2(16, 362)
 HEAL_VALUE = 100.0
 
 [node name="Projectiles" type="Node" parent="." groups=["projectiles"]]
+
+[node name="TrapDoor" type="StaticBody2D" parent="."]
+position = Vector2(103, 647)
+rotation = 3.14159
+collision_layer = 256
+collision_mask = 3
+
+[node name="OneWayCollider" type="CollisionShape2D" parent="TrapDoor"]
+position = Vector2(87, 211.5)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_entm5")
+one_way_collision = true
+
+[node name="BossMusicTrigger" type="Area2D" parent="."]
+position = Vector2(16, 410)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossMusicTrigger"]
+position = Vector2(-1, 11)
+shape = SubResource("RectangleShape2D_1u68i")
+
+[connection signal="body_entered" from="BossMusicTrigger" to="." method="_on_boss_music_trigger_body_entered"]

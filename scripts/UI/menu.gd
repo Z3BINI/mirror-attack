@@ -24,11 +24,16 @@ func _on_return_pressed():
 
 
 func _on_music_toggle_toggled(toggled_on):
+	AudioManager.main_theme.volume_db = -17
+	AudioManager.music = toggled_on
 	if !toggled_on: AudioManager.main_theme.stop()
 	else: AudioManager.main_theme.play()
 
 
 func _on_retry_pressed():
+	if $Pause/MusicToggle.button_pressed == true:
+		_on_music_toggle_toggled(true)
+		AudioManager.main_theme.volume_db = -17
 	PlayerStats.hp = PlayerStats.player_load_hp
 	PlayerStats.dead = false
 	get_tree().reload_current_scene()

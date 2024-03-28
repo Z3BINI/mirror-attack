@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://clx7dmbvw0wjw"]
+
+[ext_resource type="Script" path="res://scripts/components/trap_door.gd" id="1_3j8yq"]
+
+[node name="TrapDoor" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 115
+script = ExtResource("1_3j8yq")
