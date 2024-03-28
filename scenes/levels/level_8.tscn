@@ -74,21 +74,11 @@ PLAYER = NodePath("../../Player")
 MAX_HP = 8.0
 SHOOT_CD = 1.0
 
-[node name="Enemy9" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
-position = Vector2(-138, 745)
-PLAYER = NodePath("../../Player")
-MAX_HP = 6.0
-
 [node name="Enemy10" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
 position = Vector2(0, 835)
 PLAYER = NodePath("../../Player")
 MAX_HP = 6.0
 SHOOT_CD = 3.0
-
-[node name="Enemy11" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
-position = Vector2(178, 742)
-PLAYER = NodePath("../../Player")
-MAX_HP = 6.0
 
 [node name="Enemy13" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("4_xddhf")]
 position = Vector2(0, 722)
@@ -106,11 +96,12 @@ SHOOT_CD = 0.5
 position = Vector2(10, 622)
 PLAYER = NodePath("../../Player")
 MAX_HP = 6.0
+SHOOT_CD = 2.5
 
 [node name="Enemy15" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
 position = Vector2(-299, 883)
 PLAYER = NodePath("../../Player")
-MAX_HP = 8.0
+MAX_HP = 6.0
 SHOOT_CD = 2.5
 
 [node name="Enemy17" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
@@ -122,7 +113,7 @@ SHOOT_CD = 2.5
 [node name="Enemy16" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
 position = Vector2(317, 891)
 PLAYER = NodePath("../../Player")
-MAX_HP = 8.0
+MAX_HP = 6.0
 SHOOT_CD = 2.5
 
 [node name="Enemy18" parent="Enemies" node_paths=PackedStringArray("PLAYER") instance=ExtResource("6_in5tt")]
