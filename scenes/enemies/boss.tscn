@@ -104,13 +104,13 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4gsf"]
 radius = 1.0
-height = 10.0
+height = 24.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r8cwl"]
 radius = 120.067
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qor1i"]
-size = Vector2(12, 13)
+size = Vector2(20, 37)
 
 [sub_resource type="Gradient" id="Gradient_mikqb"]
 offsets = PackedFloat32Array(0, 0.538462, 1)
@@ -169,13 +169,14 @@ libraries = {
 }
 
 [node name="EnemySpriteSheet" type="Sprite2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(0, -24)
+scale = Vector2(2.5, 2.5)
 texture = ExtResource("6_rj36l")
 hframes = 8
 vframes = 6
 
 [node name="Feet" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_b4gsf")
 
@@ -191,7 +192,7 @@ debug_color = Color(1, 0.741176, 0.298039, 0.419608)
 position = Vector2(0, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -4.5)
+position = Vector2(0, -16.5)
 shape = SubResource("RectangleShape2D_qor1i")
 
 [node name="VanishEffect" type="GPUParticles2D" parent="."]
@@ -204,9 +205,9 @@ one_shot = true
 
 [node name="EnemyHealth" parent="." instance=ExtResource("8_i6hah")]
 offset_left = -11.0
-offset_top = -15.0
+offset_top = -42.0
 offset_right = 3.0
-offset_bottom = -12.0
+offset_bottom = -39.0
 scale = Vector2(1.64, 1.56)
 
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_player_detector_body_entered"]
